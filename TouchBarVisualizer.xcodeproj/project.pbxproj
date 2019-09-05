@@ -1,0 +1,640 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64B5EBFBAEDF8B0A14419D2E /* libPods-SoundflowerPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BD7BFFBA2DAFDA23456740 /* libPods-SoundflowerPlugin.a */; };
+		9D9A5402CE44C1BE87E6CAF8 /* Pods_TouchBarVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */; };
+		FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* volume.swift */; };
+		FE4B8469231DAE50008B130C /* SoundflowerEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = FE4B8465231DAE50008B130C /* SoundflowerEngine.h */; };
+		FE4B846A231DAE50008B130C /* SoundflowerDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = FE4B8466231DAE50008B130C /* SoundflowerDevice.h */; };
+		FE4B846B231DAE50008B130C /* SoundflowerDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8467231DAE50008B130C /* SoundflowerDevice.cpp */; };
+		FE4B846C231DAE50008B130C /* SoundflowerEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8468231DAE50008B130C /* SoundflowerEngine.cpp */; };
+		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
+		FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C42260F99100D23B25 /* AppDelegate.swift */; };
+		FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C62260F99100D23B25 /* ViewController.swift */; };
+		FED2D1C92260F99200D23B25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1C82260F99200D23B25 /* Assets.xcassets */; };
+		FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1CA2260F99200D23B25 /* Main.storyboard */; };
+		FEF6943622A9A89C00DDD0F3 /* colorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943522A9A89C00DDD0F3 /* colorView.swift */; };
+		FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* colorScene.swift */; };
+		FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943922A9C02B00DDD0F3 /* WindowController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FE4B847C231DF455008B130C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8ABDBE97F9E65A3947DD7D47 /* Pods-SoundflowerPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundflowerPlugin.debug.xcconfig"; path = "Target Support Files/Pods-SoundflowerPlugin/Pods-SoundflowerPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		8FBE2EDC12C6E4109A56B9E2 /* Pods-TouchBarVisualizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.debug.xcconfig"; sourceTree = "<group>"; };
+		93BD7BFFBA2DAFDA23456740 /* libPods-SoundflowerPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoundflowerPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5974B5D1EBF503AB5E4BC22 /* Pods-TouchBarVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.release.xcconfig"; sourceTree = "<group>"; };
+		F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1153D44F8964DF5B852E2A /* Pods-SoundflowerPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundflowerPlugin.release.xcconfig"; path = "Target Support Files/Pods-SoundflowerPlugin/Pods-SoundflowerPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		FE2787BA22710F3600B8E4B4 /* volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = volume.swift; sourceTree = "<group>"; };
+		FE4B845B231DAE20008B130C /* SoundflowerPlugin.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundflowerPlugin.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE4B8461231DAE20008B130C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE4B8465231DAE50008B130C /* SoundflowerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundflowerEngine.h; sourceTree = "<group>"; };
+		FE4B8466231DAE50008B130C /* SoundflowerDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundflowerDevice.h; sourceTree = "<group>"; };
+		FE4B8467231DAE50008B130C /* SoundflowerDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundflowerDevice.cpp; sourceTree = "<group>"; };
+		FE4B8468231DAE50008B130C /* SoundflowerEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundflowerEngine.cpp; sourceTree = "<group>"; };
+		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		FE4B8575231F3A65008B130C /* NewAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAudioDevice.h; sourceTree = "<group>"; };
+		FE4B8576231F3A65008B130C /* NewAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAudioDevice.m; sourceTree = "<group>"; };
+		FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBarVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED2D1C42260F99100D23B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FED2D1C62260F99100D23B25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FED2D1C82260F99200D23B25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FED2D1CB2260F99200D23B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FED2D1CD2260F99200D23B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchBarVisualizer.entitlements; sourceTree = "<group>"; };
+		FEF6943522A9A89C00DDD0F3 /* colorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorView.swift; sourceTree = "<group>"; };
+		FEF6943722A9AE9200DDD0F3 /* colorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorScene.swift; sourceTree = "<group>"; };
+		FEF6943922A9C02B00DDD0F3 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE4B8458231DAE20008B130C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B5EBFBAEDF8B0A14419D2E /* libPods-SoundflowerPlugin.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED2D1BE2260F99100D23B25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D9A5402CE44C1BE87E6CAF8 /* Pods_TouchBarVisualizer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6685BD50F0FED2B3F7A3BA7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8ABDBE97F9E65A3947DD7D47 /* Pods-SoundflowerPlugin.debug.xcconfig */,
+				FA1153D44F8964DF5B852E2A /* Pods-SoundflowerPlugin.release.xcconfig */,
+				8FBE2EDC12C6E4109A56B9E2 /* Pods-TouchBarVisualizer.debug.xcconfig */,
+				E5974B5D1EBF503AB5E4BC22 /* Pods-TouchBarVisualizer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE4B845C231DAE20008B130C /* SoundflowerPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				FE4B8467231DAE50008B130C /* SoundflowerDevice.cpp */,
+				FE4B8466231DAE50008B130C /* SoundflowerDevice.h */,
+				FE4B8468231DAE50008B130C /* SoundflowerEngine.cpp */,
+				FE4B8465231DAE50008B130C /* SoundflowerEngine.h */,
+				FE4B8461231DAE20008B130C /* Info.plist */,
+			);
+			path = SoundflowerPlugin;
+			sourceTree = "<group>";
+		};
+		FED2D1B82260F99100D23B25 = {
+			isa = PBXGroup;
+			children = (
+				FED2D1C32260F99100D23B25 /* TouchBarVisualizer */,
+				FE4B845C231DAE20008B130C /* SoundflowerPlugin */,
+				FED2D1C22260F99100D23B25 /* Products */,
+				FEDD7EE4231876CE00B2CE8A /* Frameworks */,
+				C6685BD50F0FED2B3F7A3BA7 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		FED2D1C22260F99100D23B25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */,
+				FE4B845B231DAE20008B130C /* SoundflowerPlugin.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FED2D1C32260F99100D23B25 /* TouchBarVisualizer */ = {
+			isa = PBXGroup;
+			children = (
+				FED2D1C42260F99100D23B25 /* AppDelegate.swift */,
+				FED2D1C62260F99100D23B25 /* ViewController.swift */,
+				FEF6943922A9C02B00DDD0F3 /* WindowController.swift */,
+				FE2787BA22710F3600B8E4B4 /* volume.swift */,
+				FEF6943522A9A89C00DDD0F3 /* colorView.swift */,
+				FEF6943722A9AE9200DDD0F3 /* colorScene.swift */,
+				FED2D1C82260F99200D23B25 /* Assets.xcassets */,
+				FED2D1CA2260F99200D23B25 /* Main.storyboard */,
+				FED2D1CD2260F99200D23B25 /* Info.plist */,
+				FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */,
+				FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */,
+				FE4B8575231F3A65008B130C /* NewAudioDevice.h */,
+				FE4B8576231F3A65008B130C /* NewAudioDevice.m */,
+			);
+			path = TouchBarVisualizer;
+			sourceTree = "<group>";
+		};
+		FEDD7EE4231876CE00B2CE8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93BD7BFFBA2DAFDA23456740 /* libPods-SoundflowerPlugin.a */,
+				F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FE4B8456231DAE20008B130C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4B8469231DAE50008B130C /* SoundflowerEngine.h in Headers */,
+				FE4B846A231DAE50008B130C /* SoundflowerDevice.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FE4B845A231DAE20008B130C /* SoundflowerPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE4B8462231DAE20008B130C /* Build configuration list for PBXNativeTarget "SoundflowerPlugin" */;
+			buildPhases = (
+				A354E2FCA7747800B3F63966 /* [CP] Check Pods Manifest.lock */,
+				FE4B8456231DAE20008B130C /* Headers */,
+				FE4B8457231DAE20008B130C /* Sources */,
+				FE4B8458231DAE20008B130C /* Frameworks */,
+				FE4B8459231DAE20008B130C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoundflowerPlugin;
+			productName = SoundflowerPlugin;
+			productReference = FE4B845B231DAE20008B130C /* SoundflowerPlugin.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+		FED2D1C02260F99100D23B25 /* TouchBarVisualizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FED2D1D12260F99200D23B25 /* Build configuration list for PBXNativeTarget "TouchBarVisualizer" */;
+			buildPhases = (
+				DA5442808C9273C9646D95B9 /* [CP] Check Pods Manifest.lock */,
+				FED2D1BD2260F99100D23B25 /* Sources */,
+				FED2D1BE2260F99100D23B25 /* Frameworks */,
+				FED2D1BF2260F99100D23B25 /* Resources */,
+				FE4B847C231DF455008B130C /* Embed Frameworks */,
+				B13F6F3087B88A4531939ACE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchBarVisualizer;
+			productName = TouchBarVisualizer;
+			productReference = FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FED2D1B92260F99100D23B25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Addison Hanrattie";
+				TargetAttributes = {
+					FE4B845A231DAE20008B130C = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					FED2D1C02260F99100D23B25 = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1030;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = FED2D1BC2260F99100D23B25 /* Build configuration list for PBXProject "TouchBarVisualizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FED2D1B82260F99100D23B25;
+			productRefGroup = FED2D1C22260F99100D23B25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FED2D1C02260F99100D23B25 /* TouchBarVisualizer */,
+				FE4B845A231DAE20008B130C /* SoundflowerPlugin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE4B8459231DAE20008B130C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED2D1BF2260F99100D23B25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED2D1C92260F99200D23B25 /* Assets.xcassets in Resources */,
+				FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A354E2FCA7747800B3F63966 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundflowerPlugin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B13F6F3087B88A4531939ACE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AMCoreAudio/AMCoreAudio.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMCoreAudio.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA5442808C9273C9646D95B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TouchBarVisualizer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE4B8457231DAE20008B130C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4B846C231DAE50008B130C /* SoundflowerEngine.cpp in Sources */,
+				FE4B846B231DAE50008B130C /* SoundflowerDevice.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED2D1BD2260F99100D23B25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */,
+				FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */,
+				FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */,
+				FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */,
+				FEF6943622A9A89C00DDD0F3 /* colorView.swift in Sources */,
+				FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */,
+				FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FED2D1CA2260F99200D23B25 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FED2D1CB2260F99200D23B25 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FE4B8463231DAE20008B130C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ABDBE97F9E65A3947DD7D47 /* Pods-SoundflowerPlugin.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SoundflowerPlugin/Info.plist;
+				MODULE_NAME = com.addisonhanrattie.SoundflowerPlugin;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.SoundflowerPlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		FE4B8464231DAE20008B130C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA1153D44F8964DF5B852E2A /* Pods-SoundflowerPlugin.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SoundflowerPlugin/Info.plist;
+				MODULE_NAME = com.addisonhanrattie.SoundflowerPlugin;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.SoundflowerPlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+		FED2D1CF2260F99200D23B25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_MODULES_AUTOLINK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FED2D1D02260F99200D23B25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_MODULES_AUTOLINK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		FED2D1D22260F99200D23B25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FBE2EDC12C6E4109A56B9E2 /* Pods-TouchBarVisualizer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_NOTICES = YES;
+				ASSETCATALOG_WARNINGS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TouchBarVisualizer/TouchBarVisualizer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
+				INFOPLIST_FILE = TouchBarVisualizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchBarVisualizer/TouchBarVisualizer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				WARNING_CFLAGS = "";
+			};
+			name = Debug;
+		};
+		FED2D1D32260F99200D23B25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5974B5D1EBF503AB5E4BC22 /* Pods-TouchBarVisualizer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_NOTICES = YES;
+				ASSETCATALOG_WARNINGS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TouchBarVisualizer/TouchBarVisualizer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
+				INFOPLIST_FILE = TouchBarVisualizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchBarVisualizer/TouchBarVisualizer-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				WARNING_CFLAGS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FE4B8462231DAE20008B130C /* Build configuration list for PBXNativeTarget "SoundflowerPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE4B8463231DAE20008B130C /* Debug */,
+				FE4B8464231DAE20008B130C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FED2D1BC2260F99100D23B25 /* Build configuration list for PBXProject "TouchBarVisualizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FED2D1CF2260F99200D23B25 /* Debug */,
+				FED2D1D02260F99200D23B25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FED2D1D12260F99200D23B25 /* Build configuration list for PBXNativeTarget "TouchBarVisualizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FED2D1D22260F99200D23B25 /* Debug */,
+				FED2D1D32260F99200D23B25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FED2D1B92260F99100D23B25 /* Project object */;
+}

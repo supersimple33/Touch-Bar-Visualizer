@@ -1,0 +1,6 @@
+framework module Pods_TouchBarVisualizer {
+  umbrella header "Pods-TouchBarVisualizer-umbrella.h"
+
+  export *
+  module * { export * }
+}
