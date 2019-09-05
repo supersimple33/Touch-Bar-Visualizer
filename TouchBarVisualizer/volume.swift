@@ -19,6 +19,7 @@ public class volume {
     public func analyze(buffer: AVAudioPCMBuffer) -> [Int] {
         // refrenced from stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
         
+        // TODO : Needs to have input device auto set
         // Set Buffers
         let bufferSize = buffer.frameLength
         

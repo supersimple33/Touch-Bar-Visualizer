@@ -26,12 +26,6 @@ static AudioObjectID aggDeviceID = 0;
     CFNumberRef cf_stacked = CFNumberCreate(kCFAllocatorDefault, kCFNumberCharType, &stacked);
     CFDictionaryAddValue(params, CFSTR(kAudioAggregateDeviceIsStackedKey), cf_stacked);
     
-//    CFArrayRef devicesCF = (__bridge CFArrayRef)devices;
-    
-//    CFDictionaryAddValue(params, CFSTR(kAudioAggregateDeviceMasterSubDeviceKey), defaultOutCF);
-    
-//    kAudioAggregateDeviceSubDeviceListKey
-    
     CFDictionaryAddValue(params, CFSTR(kAudioAggregateDeviceSubDeviceListKey), devices);
     
     AudioObjectID resulting_id = 0;
