@@ -30,28 +30,6 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // For guarenteeing max volume.
-        var defaultOutputDeviceID = AudioDeviceID(0) //from stackoverflow.com/questions/2729 0751/using-audiotoolbox-from-swift-to-access-os-x-master-volume
-        var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-        
-        var getDefaultOutputDevicePropertyAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioHardwarePropertyDefaultInputDevice,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-        
-        AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &getDefaultOutputDevicePropertyAddress, 0, nil, &defaultOutputDeviceIDSize, &defaultOutputDeviceID)
-        var volume = Float32(1.0)
-        let volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
-        
-        var volumePropertyAddress = AudioObjectPropertyAddress(mSelector: kAudioHardwareServiceDeviceProperty_VirtualMasterVolume, mScope: kAudioDevicePropertyScopeOutput, mElement: kAudioObjectPropertyElementMaster)
-        AudioObjectSetPropertyData(defaultOutputDeviceID, &volumePropertyAddress, 0, nil, volumeSize, &volume)
-        
-        var volumePropertyAddressInput = AudioObjectPropertyAddress(mSelector: kAudioHardwareServiceDeviceProperty_VirtualMasterVolume, mScope: kAudioDevicePropertyScopeInput, mElement: kAudioObjectPropertyElementMaster)
-        AudioObjectSetPropertyData(defaultOutputDeviceID, &volumePropertyAddressInput, 0, nil, volumeSize, &volume)
-        
-        
-        
         createAudioDevice()
         
 //        setup()
@@ -65,6 +43,14 @@ class ViewController: NSViewController {
         guard let soundFlower = AudioDevice.lookup(by: "SoundflowerEngine:0") else {
             fatalError("Soundflower not installed") // better error handling
         }
+        
+        soundFlower.setVolume(1.0, channel: 0, direction: .recording)
+        soundFlower.setVolume(1.0, channel: 1, direction: .recording)
+        soundFlower.setVolume(1.0, channel: 2, direction: .recording)
+        
+        soundFlower.setVolume(1.0, channel: 0, direction: .playback)
+        soundFlower.setVolume(1.0, channel: 1, direction: .playback)
+        soundFlower.setVolume(1.0, channel: 2, direction: .playback)
         
         let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: soundFlower.uid! as CFString] as CFDictionary] as CFArray
         

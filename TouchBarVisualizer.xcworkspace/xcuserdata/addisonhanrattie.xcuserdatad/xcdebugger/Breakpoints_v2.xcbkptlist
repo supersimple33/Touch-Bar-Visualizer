@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouchBarVisualizer/ViewController.swift"
+            timestampString = "589417148.460624"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "createAudioDevice()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouchBarVisualizer.ViewController.createAudioDevice() -&gt; ()"
+                  moduleName = "TouchBarVisualizer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/addisonhanrattie/Documents/Touch-Bar-Visualizer/TouchBarVisualizer/ViewController.swift"
+                  timestampString = "589417148.74842"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouchBarVisualizer.ViewController.createAudioDevice() -&gt; ()"
+                  moduleName = "TouchBarVisualizer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/addisonhanrattie/Documents/Touch-Bar-Visualizer/TouchBarVisualizer/ViewController.swift"
+                  timestampString = "589417148.7498519"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1639">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
