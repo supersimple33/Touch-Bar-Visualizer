@@ -13,9 +13,10 @@ static AudioObjectID aggDeviceID = 0;
 
 @implementation NewAudioDevice
 
-- (void) newAggDevice:(CFArrayRef)devices {
+- (void) newAggDevice:(CFArrayRef)devices :(AudioObjectID)inputID {
     
     // Adapted from bit.ly/2jZflVx
+    // Create New Aggregate Device
     CFMutableDictionaryRef params = CFDictionaryCreateMutable(kCFAllocatorDefault, 10, NULL, NULL);
     
     CFDictionaryAddValue(params, CFSTR(kAudioAggregateDeviceUIDKey), CFSTR("TBV Aggregate Device"));
@@ -38,9 +39,10 @@ static AudioObjectID aggDeviceID = 0;
         aggDeviceID = resulting_id;
     }
     
-    
+    // Set Input and Output Devices
     UInt32 propertySize = sizeof(UInt32);
     AudioHardwareSetProperty(kAudioHardwarePropertyDefaultOutputDevice, propertySize, &resulting_id);
+    AudioHardwareSetProperty(kAudioHardwarePropertyDefaultInputDevice, propertySize, &inputID);
 }
 
 - (void) destroyAggDevice {

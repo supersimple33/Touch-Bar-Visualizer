@@ -13,11 +13,6 @@ class colorView: SKView {
     
     let colScene = colorScene(size: CGSize(width: 1005, height: 30))
     
-    //smell
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//    }
-    
     func present() {
         self.presentScene(colScene)
     }

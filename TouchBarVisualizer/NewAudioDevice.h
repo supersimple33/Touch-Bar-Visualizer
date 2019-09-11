@@ -13,9 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NewAudioDevice : NSObject
 
-//+ (AudioObjectID) aggDeviceID;
-
-- (void) newAggDevice:(CFArrayRef)devices;
+- (void) newAggDevice:(CFArrayRef)devices :(AudioObjectID)inputID;
 
 - (void) destroyAggDevice;
 

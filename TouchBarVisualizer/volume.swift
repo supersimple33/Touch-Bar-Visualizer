@@ -19,7 +19,6 @@ public class volume {
     public func analyze(buffer: AVAudioPCMBuffer) -> [Int] {
         // refrenced from stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
         
-        // TODO : Needs to have input device auto set
         // Set Buffers
         let bufferSize = buffer.frameLength
         
@@ -70,11 +69,7 @@ public class volume {
         btmRng = Int(Float(topRng) / kDivCons) //Constant^
         
         for i in 1...100 { //NTS split trebel levels from bass levels
-//            print(topRng, btmRng)
             var avgPeak : Float = 0.0
-//            vDSP_meam[gv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
-//            vDSP_measqv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
-//            vDSP_rmsqv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
             vDSP_maxmgv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
             
             
@@ -91,9 +86,7 @@ public class volume {
             peaks.append(avgPeak)
         }
         
-//        print(peaks)
-        
-        let method = 2
+        let method = 2 // Static for choosing scaling method logarithmic seems to be the best
         var finalPeaks : [Int] = []
         
         switch method {
@@ -143,26 +136,10 @@ public class volume {
                     }
                     
                 }
-                /*do {
-                    switch Float(p) / 43.0 {
-                    case 0.85...1.0:
-                        finalPeaks.append(4)
-                    case 0.5..<0.85:
-                        finalPeaks.append(3)
-                    case 0.15..<0.5:
-                        finalPeaks.append(2)
-                    case 0.0..<0.15:
-                        finalPeaks.append(1)
-                    default:
-                        print("error occured index out of bounds")
-                    }
-                }*/
             }
         case 2:
-            peaks.max()
             let s = powf(peaks.max()!, 0.1)
             for i in 0...99 {
-//                print(peaks[i])
                 if peaks[i] == 0.0 {
                     finalPeaks.append(0)
                     continue

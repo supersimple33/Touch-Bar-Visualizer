@@ -18,7 +18,6 @@ class ViewController: NSViewController {
 
     let audioEngine = AVAudioEngine()
     let itemID = NSTouchBarItem.Identifier(rawValue: "com.addisonhanrattie.visualizer.color")
-    var file : AVAudioFile!
     var vol : volume = volume()
     var throwAway = 0
     
@@ -29,67 +28,50 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         createAudioDevice()
-        
-//        setup()
-        
+        setup()
     }
     
-    //  NullAudio_WillDoIOOperation
     func createAudioDevice() {
         
+        // Find all audio devices
         let systemDefault = AudioDevice.defaultOutputDevice()
         guard let soundFlower = AudioDevice.lookup(by: "SoundflowerEngine:0") else {
             fatalError("Soundflower not installed") // better error handling
         }
         
+        // Set max Volume
         soundFlower.setVolume(1.0, channel: 0, direction: .recording)
         soundFlower.setVolume(1.0, channel: 1, direction: .recording)
         soundFlower.setVolume(1.0, channel: 2, direction: .recording)
-        
         soundFlower.setVolume(1.0, channel: 0, direction: .playback)
         soundFlower.setVolume(1.0, channel: 1, direction: .playback)
         soundFlower.setVolume(1.0, channel: 2, direction: .playback)
         
         let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: soundFlower.uid! as CFString] as CFDictionary] as CFArray
         
-        newAuds.newAggDevice(devices)
+        newAuds.newAggDevice(devices, soundFlower.id)
     }
 
     func setup(){
+        // Check For Device
         let format = audioEngine.inputNode.outputFormat(forBus: 0)
         guard format.channelCount == 2 else {
-            fatalError() // Better error handling
-        }
-        let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("record.wav")
-        do {
-//            try FileManager.default.removeItem(at: url)
-            let settings = audioEngine.inputNode.outputFormat(forBus: 0).settings
-//            file = try AVAudioFile(forWriting: url, settings: settings)
-            file = try AVAudioFile(forWriting: url, settings: settings, commonFormat: format.commonFormat, interleaved: format.isInterleaved)
-        } catch {
-            print(error)
+            fatalError() // Should never be run should be removed
         }
 
         print(format)
-        //        audioEngine.connect(audioEngine.inputNode, to: audioEngine.mainMixerNode, format: format)
-        
         vol.sampleRate = audioEngine.inputNode.outputFormat(forBus: 0).sampleRate
         
+        // Install Tap and Start Audio Processing // Try Larger Buffer Size to test affects
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
-            if self.throwAway == 0 {
-                self.throwAway = 0
-                let levels = self.vol.analyze(buffer: buffer)
-                for i in 0...99 {
-                    self.colorSKView.colScene.levelFor(group: i, level: levels[i])
-                }
-                
-            } else {
-                self.throwAway += 1
-            }
+            let levels = self.vol.analyze(buffer: buffer)
+            for i in 0...99 {
+                self.colorSKView.colScene.levelFor(group: i, level: levels[i]) // Displaying
+            } // Removed throttling code may impact performance
         }
-
+        
+        // Starting Audio Engine
         audioEngine.prepare()
         do {
             try audioEngine.start()
@@ -97,16 +79,15 @@ class ViewController: NSViewController {
             print(error)
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 120) {
-            self.stop()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 120) {
+//            self.stop()
+//        }
 
     }
 
-    func stop(){
+    func stop(){ // End tapping of audio engine
         audioEngine.inputNode.removeTap(onBus: 0)
         audioEngine.stop()
-        file = nil
     }
 
 }
