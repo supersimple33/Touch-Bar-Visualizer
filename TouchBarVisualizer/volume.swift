@@ -13,10 +13,11 @@ import Accelerate
 public class volume {
     
     public var sampleRate = 0.0
+    var trailingPeak : Float = 0.0
     
     let col : colorView = colorView()
     
-    public func analyze(buffer: AVAudioPCMBuffer) -> [Int] {
+    public func analyze(buffer: AVAudioPCMBuffer) -> ([Int], Int) {
         // refrenced from stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
         
         // Set Buffers
@@ -85,6 +86,15 @@ public class volume {
             
             peaks.append(avgPeak)
         }
+        
+        // Getting peak audio value
+        var peak : Float = 0.0
+//        vDSP_maxmgv((complex.realp + topRng), 1, &peak, vDSP_Length(2205 - (Float(btmRng) * kDivCons))) //May want average instead actually
+        vDSP_meamgv((complex.realp + topRng), 1, &peak, vDSP_Length(2205 - (Float(btmRng) * kDivCons)))
+        if peak > trailingPeak {
+            trailingPeak = peak
+        }
+        let peakPercent = Int(roundf((peak / trailingPeak) * 10.0))
         
         let method = 2 // Static for choosing scaling method logarithmic seems to be the best
         var finalPeaks : [Int] = []
@@ -162,7 +172,7 @@ public class volume {
             bzero(buffer.audioBufferList.pointee.mBuffers.mData! + ii, Int(buffer.audioBufferList.pointee.mBuffers.mDataByteSize))
         }
         
-        return finalPeaks
+        return (finalPeaks, peakPercent)
     }
     
     func logA(x: Float, ofBase b: Float) -> Float {

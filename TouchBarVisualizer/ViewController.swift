@@ -24,12 +24,24 @@ class ViewController: NSViewController {
     let colorSKView = colorView()
     let newAuds : NewAudioDevice = NewAudioDevice()
     
-    @IBOutlet var bar: NSProgressIndicator!
+    @IBOutlet var progressCircle: NSProgressIndicator!
+    @IBOutlet var progressCircle2: NSProgressIndicator!
+    
+    @IBOutlet var levelDisplay: NSLevelIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createAudioDevice()
         setup()
+        Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
+            if self.progressCircle.doubleValue == self.progressCircle.maxValue {
+                self.progressCircle.doubleValue = 0.0
+                self.progressCircle2.doubleValue = 0.0
+            } else {
+                self.progressCircle.increment(by: 0.1)
+                self.progressCircle2.increment(by: 0.1)
+            }
+        }
     }
     
     func createAudioDevice() {
@@ -67,8 +79,12 @@ class ViewController: NSViewController {
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
             let levels = self.vol.analyze(buffer: buffer)
             for i in 0...99 {
-                self.colorSKView.colScene.levelFor(group: i, level: levels[i]) // Displaying
+                self.colorSKView.colScene.levelFor(group: i, level: levels.0[i]) // Displaying
             } // Removed throttling code may impact performance
+            print(levels.1)
+            DispatchQueue.main.async {
+                self.levelDisplay.doubleValue = Double(levels.1)
+            }
         }
         
         // Starting Audio Engine
