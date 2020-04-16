@@ -44,6 +44,10 @@ class ViewController: NSViewController {
         }
     }
     
+//    override func viewDidAppear() {
+////        view.window?.level = .floating
+//    }
+    
     func createAudioDevice() {
         
         // Find all audio devices
@@ -79,9 +83,9 @@ class ViewController: NSViewController {
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
             let levels = self.vol.analyze(buffer: buffer)
             for i in 0...99 {
-                self.colorSKView.colScene.levelFor(group: i, level: levels.0[i]) // Displaying
+                self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i]) // Displaying
             } // Removed throttling code may impact performance
-            print(levels.1)
+//            print(levels.1)
             DispatchQueue.main.async {
                 self.levelDisplay.doubleValue = Double(levels.1)
             }

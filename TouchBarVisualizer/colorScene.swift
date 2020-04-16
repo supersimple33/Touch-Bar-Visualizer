@@ -9,7 +9,6 @@
 import Cocoa
 import SpriteKit
 
-
 class colorScene: SKScene {
     
     var ready = false
@@ -23,14 +22,26 @@ class colorScene: SKScene {
         self.backgroundColor = .black
         for i in 0...99 {
             var popul : [SKSpriteNode] = []
-            for c in 0...10 {
+            for c in 0...10 { // 10,9 / 8,7
+                var color : NSColor!
+                if c < 5 {
+                    color = .green
+                } else if c < 8 {
+                    color = .orange
+                } else {
+                    color = .red
+                }
                 let x : CGFloat = wid * CGFloat(i + 1)
                 let texture = SKTexture(imageNamed: "square")
-                let rect = SKSpriteNode(texture: texture, color: .red, size: CGSize(width: wid, height: 3))
+                
+                let rect = SKSpriteNode(texture: texture, color: color, size: CGSize(width: wid, height: 3))
+                rect.colorBlendFactor = 1.0
                 self.addChild(rect)
                 rect.position = CGPoint(x: x, y: (rect.size.height * CGFloat(c - 1)) + (rect.size.height / 2))
                 
                 popul.append(rect)
+                
+                
             }
             allNodes.append(popul)
         }

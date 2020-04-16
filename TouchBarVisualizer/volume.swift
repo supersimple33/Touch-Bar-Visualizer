@@ -13,7 +13,7 @@ import Accelerate
 public class volume {
     
     public var sampleRate = 0.0
-    var trailingPeak : Float = 0.0
+    var trailingPeak : Float = 0.0000000001
     
     let col : colorView = colorView()
     
@@ -94,6 +94,7 @@ public class volume {
         if peak > trailingPeak {
             trailingPeak = peak
         }
+        
         let peakPercent = Int(roundf((peak / trailingPeak) * 10.0))
         
         let method = 2 // Static for choosing scaling method logarithmic seems to be the best
