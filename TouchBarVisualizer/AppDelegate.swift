@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         if #available(OSX 10.12.2, *) {
             NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-            
         }
     }
 

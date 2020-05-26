@@ -5,3 +5,4 @@
 //#import "SoundFlowerEngine.h"
 
 #import "NewAudioDevice.h"
+#import "TouchBarPrivateApi.h"

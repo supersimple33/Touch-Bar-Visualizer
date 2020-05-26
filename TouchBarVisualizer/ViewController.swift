@@ -21,7 +21,7 @@ class ViewController: NSViewController {
     var vol : volume = volume()
     var throwAway = 0
     
-    let colorSKView = colorView()
+    var colorSKView = colorView()
     let newAuds : NewAudioDevice = NewAudioDevice()
     
     @IBOutlet var progressCircle: NSProgressIndicator!
@@ -29,6 +29,9 @@ class ViewController: NSViewController {
     
     @IBOutlet var levelDisplay: NSLevelIndicator!
     
+    @IBAction func show(_ sender: Any) {
+        backGroundShow()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         createAudioDevice()
@@ -44,9 +47,23 @@ class ViewController: NSViewController {
         }
     }
     
-//    override func viewDidAppear() {
-////        view.window?.level = .floating
-//    }
+    func updatePresence() {
+        DFRElementSetControlStripPresenceForIdentifier(itemID, true)
+    }
+    
+    @objc func showTouchBar() {
+        presentSystemModal(touchBar, systemTrayItemIdentifier: itemID)
+        updatePresence()
+    }
+    
+    func backGroundShow() {
+        DFRSystemModalShowsCloseBoxWhenFrontMost(false)
+        let item = NSCustomTouchBarItem(identifier: itemID)
+        let nmg = NSImage(named: NSImage.Name("dot"))!
+        item.view = NSButton(image: nmg, target: self, action: #selector(showTouchBar))
+        NSTouchBarItem.addSystemTrayItem(item)
+        updatePresence()
+    }
     
     func createAudioDevice() {
         
@@ -83,9 +100,12 @@ class ViewController: NSViewController {
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
             let levels = self.vol.analyze(buffer: buffer)
             for i in 0...99 {
-                self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i]) // Displaying
+                // Displaying
+                self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
+                
+                
             } // Removed throttling code may impact performance
-//            print(levels.1)
+            print(levels.1)
             DispatchQueue.main.async {
                 self.levelDisplay.doubleValue = Double(levels.1)
             }
@@ -126,13 +146,22 @@ extension ViewController: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         let item = NSCustomTouchBarItem(identifier: itemID)
+        colorSKView = colorView()
         item.view = colorSKView
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.colorSKView.present()
         }
         return item
     }
+
+    func presentSystemModal(_ touchBar: NSTouchBar!, systemTrayItemIdentifier identifier: NSTouchBarItem.Identifier!) {
+        NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: identifier)    }
+
+    func presentSystemModal(_ touchBar: NSTouchBar!, placement: Int64, systemTrayItemIdentifier identifier: NSTouchBarItem.Identifier!) {
+        NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: identifier)
+    }
+
+    func minimizeSystemModal(_ touchBar: NSTouchBar!) {
+        NSTouchBar.minimizeSystemModalTouchBar(touchBar)
+    }
 }
-
-
-

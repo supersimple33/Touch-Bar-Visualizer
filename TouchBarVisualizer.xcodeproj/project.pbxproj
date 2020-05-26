@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		64B5EBFBAEDF8B0A14419D2E /* libPods-SoundflowerPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BD7BFFBA2DAFDA23456740 /* libPods-SoundflowerPlugin.a */; };
 		9D9A5402CE44C1BE87E6CAF8 /* Pods_TouchBarVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */; };
+		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
+		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* volume.swift */; };
 		FE4B8469231DAE50008B130C /* SoundflowerEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = FE4B8465231DAE50008B130C /* SoundflowerEngine.h */; };
 		FE4B846A231DAE50008B130C /* SoundflowerDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = FE4B8466231DAE50008B130C /* SoundflowerDevice.h */; };
@@ -31,6 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +47,8 @@
 		E5974B5D1EBF503AB5E4BC22 /* Pods-TouchBarVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.release.xcconfig"; sourceTree = "<group>"; };
 		F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1153D44F8964DF5B852E2A /* Pods-SoundflowerPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundflowerPlugin.release.xcconfig"; path = "Target Support Files/Pods-SoundflowerPlugin/Pods-SoundflowerPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		FE0F10EC24492540001F8976 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateApi.h; sourceTree = "<group>"; };
 		FE2787BA22710F3600B8E4B4 /* volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = volume.swift; sourceTree = "<group>"; };
 		FE4B845B231DAE20008B130C /* SoundflowerPlugin.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundflowerPlugin.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4B8461231DAE20008B130C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */,
 				9D9A5402CE44C1BE87E6CAF8 /* Pods_TouchBarVisualizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +150,7 @@
 				FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */,
 				FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */,
 				FE4B8575231F3A65008B130C /* NewAudioDevice.h */,
+				FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */,
 				FE4B8576231F3A65008B130C /* NewAudioDevice.m */,
 			);
 			path = TouchBarVisualizer;
@@ -152,6 +159,7 @@
 		FEDD7EE4231876CE00B2CE8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE0F10EC24492540001F8976 /* DFRFoundation.framework */,
 				93BD7BFFBA2DAFDA23456740 /* libPods-SoundflowerPlugin.a */,
 				F8B2FDA920A55AB58F679F7E /* Pods_TouchBarVisualizer.framework */,
 			);
@@ -570,6 +578,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				WARNING_CFLAGS = "";
 			};
 			name = Debug;
@@ -602,6 +614,10 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchBarVisualizer/TouchBarVisualizer-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				WARNING_CFLAGS = "";
 			};
 			name = Release;
