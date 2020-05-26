@@ -22,10 +22,6 @@ class colorScene: SKScene {
     
     override func didMove(to view: SKView) { // Initialize all sprites for leveling
         print(self.size.width)
-        if !created {
-            NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
-            created = true
-        }
         self.backgroundColor = .black
         for i in 0...99 {
             var popul : [SKSpriteNode] = []
@@ -55,18 +51,17 @@ class colorScene: SKScene {
             self.backgroundColor = .black
             ready = true
         }
+        
+        if !created {
+            NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
+            created = true
+            moveCent() //Correct call point?
+        }
     }
     
     
     func levelFor(group: Int, level: Int) {
         guard allNodes.count == 100 else { return }
-        
-//        if group <= 10 && active {
-//            for i in 0...10 { // Hide all nodes
-//                allNodes[group][i].isHidden = true
-//            }
-//            return
-//        }
         
         for i in 0...level { // Reveal all needed nodes
             if i > 10 {

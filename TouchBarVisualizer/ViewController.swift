@@ -29,9 +29,9 @@ class ViewController: NSViewController {
     
     @IBOutlet var levelDisplay: NSLevelIndicator!
     
-    @IBAction func show(_ sender: Any) {
-        backGroundShow()
-    }
+//    @IBAction func show(_ sender: Any) {
+//        backGroundShow()
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         createAudioDevice()
@@ -47,6 +47,10 @@ class ViewController: NSViewController {
         }
     }
     
+    override func viewDidAppear() {
+        backGroundShow()
+    }
+    
     func updatePresence() {
         DFRElementSetControlStripPresenceForIdentifier(itemID, true)
     }
@@ -54,12 +58,16 @@ class ViewController: NSViewController {
     @objc func showTouchBar() {
         presentSystemModal(touchBar, systemTrayItemIdentifier: itemID)
         updatePresence()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.colorSKView.presentColor()
+        }
+        //plug in show here
     }
     
     func backGroundShow() {
         DFRSystemModalShowsCloseBoxWhenFrontMost(false)
         let item = NSCustomTouchBarItem(identifier: itemID)
-        let nmg = NSImage(named: NSImage.Name("dot"))!
+        let nmg = NSImage(named: NSImage.Name("logo"))! //Create Better Image
         item.view = NSButton(image: nmg, target: self, action: #selector(showTouchBar))
         NSTouchBarItem.addSystemTrayItem(item)
         updatePresence()
@@ -102,8 +110,6 @@ class ViewController: NSViewController {
             for i in 0...99 {
                 // Displaying
                 self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
-                
-                
             } // Removed throttling code may impact performance
             print(levels.1)
             DispatchQueue.main.async {
@@ -149,7 +155,7 @@ extension ViewController: NSTouchBarDelegate {
         colorSKView = colorView()
         item.view = colorSKView
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.colorSKView.present()
+            self.colorSKView.presentText()
         }
         return item
     }
