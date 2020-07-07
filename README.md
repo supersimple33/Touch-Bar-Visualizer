@@ -4,7 +4,7 @@ The Touch Bar Visualizer is a cosmetic program used to display the sound output 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites
-In order to listen to system sound Touch Bar Visualizer requires sound flower to be installed. Sound flower can be found at [a link](https://github.com/mattingalls/Soundflower). Follow the instructions from Soundflower in order to download and run the installer and create a new audio device channel.
+In order to listen to system sound Touch Bar Visualizer requires sound flower to be installed. Sound flower can be found [here](https://github.com/mattingalls/Soundflower). Follow the instructions from Soundflower in order to download and run the installer and create a new audio device channel.
 ### Installation
 Once Soundflower has been installed you may either download the source of this project or download the latest release.
 ### Usage
