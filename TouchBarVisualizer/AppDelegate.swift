@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
         vc.stop()
         newAuds.destroyAggDevice()
+        print("closed")
     }
 }
 

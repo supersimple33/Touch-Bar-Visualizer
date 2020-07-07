@@ -153,8 +153,8 @@
 				FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */,
 				FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */,
 				FE4B8575231F3A65008B130C /* NewAudioDevice.h */,
-				FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */,
 				FE4B8576231F3A65008B130C /* NewAudioDevice.m */,
+				FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */,
 			);
 			path = TouchBarVisualizer;
 			sourceTree = "<group>";
