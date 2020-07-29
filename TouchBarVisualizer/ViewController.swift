@@ -69,7 +69,7 @@ class ViewController: NSViewController {
     func backGroundShow() {
         DFRSystemModalShowsCloseBoxWhenFrontMost(false)
         let item = NSCustomTouchBarItem(identifier: itemID)
-        let nmg = NSImage(named: NSImage.Name("logo"))! //Create Better Image
+        let nmg = NSImage(named: NSImage.Name("Logo"))! //Create Better Image
         item.view = NSButton(image: nmg, target: self, action: #selector(showTouchBar))
         NSTouchBarItem.addSystemTrayItem(item)
         updatePresence()
