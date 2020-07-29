@@ -18,9 +18,9 @@
 		FE4B846C231DAE50008B130C /* SoundflowerEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8468231DAE50008B130C /* SoundflowerEngine.cpp */; };
 		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
 		FEBA3EBC247DAEB200F93677 /* textScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* textScene.swift */; };
+		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
 		FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C42260F99100D23B25 /* AppDelegate.swift */; };
 		FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C62260F99100D23B25 /* ViewController.swift */; };
-		FED2D1C92260F99200D23B25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1C82260F99200D23B25 /* Assets.xcassets */; };
 		FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1CA2260F99200D23B25 /* Main.storyboard */; };
 		FEF6943622A9A89C00DDD0F3 /* colorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943522A9A89C00DDD0F3 /* colorView.swift */; };
 		FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* colorScene.swift */; };
@@ -61,10 +61,10 @@
 		FE4B8575231F3A65008B130C /* NewAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAudioDevice.h; sourceTree = "<group>"; };
 		FE4B8576231F3A65008B130C /* NewAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAudioDevice.m; sourceTree = "<group>"; };
 		FEBA3EBB247DAEB200F93677 /* textScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textScene.swift; sourceTree = "<group>"; };
+		FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBarVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED2D1C42260F99100D23B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FED2D1C62260F99100D23B25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FED2D1C82260F99200D23B25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED2D1CB2260F99200D23B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FED2D1CD2260F99200D23B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchBarVisualizer.entitlements; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				FEF6943522A9A89C00DDD0F3 /* colorView.swift */,
 				FEF6943722A9AE9200DDD0F3 /* colorScene.swift */,
 				FEBA3EBB247DAEB200F93677 /* textScene.swift */,
-				FED2D1C82260F99200D23B25 /* Assets.xcassets */,
+				FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */,
 				FED2D1CA2260F99200D23B25 /* Main.storyboard */,
 				FED2D1CD2260F99200D23B25 /* Info.plist */,
 				FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */,
@@ -281,7 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FED2D1C92260F99200D23B25 /* Assets.xcassets in Resources */,
+				FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */,
 				FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

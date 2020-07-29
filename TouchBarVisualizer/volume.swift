@@ -41,8 +41,8 @@ public class volume {
         }
 
         // even odds
-        var cPnt = buffer.audioBufferList.pointee.mBuffers.mData!.assumingMemoryBound(to: DSPComplex.self)
-        var cPntLen = buffer.audioBufferList.pointee.mBuffers.mDataByteSize
+        let cPnt = buffer.audioBufferList.pointee.mBuffers.mData!.assumingMemoryBound(to: DSPComplex.self)
+        let cPntLen = buffer.audioBufferList.pointee.mBuffers.mDataByteSize
         vDSP_ctoz(cPnt, 2, &complex, 1, vDSP_Length(bufferSize / 2))
         memset(cPnt, 0, Int(cPntLen))
         
@@ -69,7 +69,7 @@ public class volume {
         topRng = Int(Float(topRng) / kDivCons) //Constant^
         btmRng = Int(Float(topRng) / kDivCons) //Constant^
         
-        for i in 1...100 { //NTS split trebel levels from bass levels
+        for _ in 1...100 { //NTS split trebel levels from bass levels
             var avgPeak : Float = 0.0
             vDSP_maxmgv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
             
@@ -100,11 +100,11 @@ public class volume {
         let method = 2 // Static for choosing scaling method logarithmic seems to be the best
         var finalPeaks : [Int] = []
         
-        switch method {
+        switch method { //switchs volume scale calculations
         case 0:
-            let shifter = 10.0 / (peaks.max() ?? 1.0)
+            let shifter = 10.0 / (peaks.max() ?? 1.0) //Sorry but this error must stay
             
-            print(peaks.max(), shifter)
+            print(peaks.max() as Any, shifter)
             for i in 0...99 {
                 if shifter.isInfinite || shifter.isNaN {
                     let peak = Int(peaks[i] * 0.0) + 1
