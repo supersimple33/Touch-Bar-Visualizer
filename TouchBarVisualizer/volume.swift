@@ -96,7 +96,6 @@ public class volume {
         switch method { //switchs volume scale calculations
         case 0:
             let shifter = 10.0 / (peaks.max() ?? 1.0)
-            
             print(peaks.max() as Any, shifter)
             for i in 0...99 {
                 if shifter.isInfinite || shifter.isNaN {
@@ -109,37 +108,17 @@ public class volume {
             }
         case 1:
             let sortedPeaks = peaks.sorted()
-            
             for i in 0...99 {
                 let p = sortedPeaks.firstIndex(of: peaks[i])!
                 do {
-                    let relLoud = Float(p) / 99.0
-                    switch relLoud {
-                    case 0.9...1.0:
-                        finalPeaks.append(10)
-                    case 0.8..<0.9:
-                        finalPeaks.append(9)
-                    case 0.7..<0.8:
-                        finalPeaks.append(8)
-                    case 0.6..<0.7:
-                        finalPeaks.append(7)
-                    case 0.5..<0.6:
-                        finalPeaks.append(6)
-                    case 0.4..<0.5:
-                        finalPeaks.append(5)
-                    case 0.3..<0.4:
-                        finalPeaks.append(4)
-                    case 0.2..<0.3:
-                        finalPeaks.append(3)
-                    case 0.1..<0.2:
-                        finalPeaks.append(2)
-                    case 0.0..<1.0:
-                        finalPeaks.append(1)
-                    default:
-                        finalPeaks.append(0)
+                    let relLoud =  10.0 * Float(p) / 99.0
+                    var peakiness = Int(relLoud) + 1
+                    guard peakiness >= 0 && peakiness <= 10 else {
+                        peakiness = 0
                         print("error occured index out of bounds")
+                        continue
                     }
-                    
+                    finalPeaks.append(peakiness)
                 }
             }
         case 2:
@@ -156,7 +135,7 @@ public class volume {
                 finalPeaks.append(Int(peak))
             }
         default:
-            fatalError()
+            fatalError() //should never default
             break
         }
         
