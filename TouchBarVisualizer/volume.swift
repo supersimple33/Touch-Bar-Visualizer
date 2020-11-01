@@ -49,27 +49,21 @@ public class volume {
         //fft and clear
         vDSP_fft_zrip(setup!, &complex, 1, sqLog, FFTDirection(FFT_FORWARD))
         bzero(complex.imagp, maxBufFloatL)
-
-        
-        
         
         var row : vDSP_Length = 0
         var vol : Float = 0.0
         vDSP_maxvi(complex.realp, 1, &vol, &row, vDSP_Length(bufferSize / 2))
-//        print(row, vol)
-        
-        // NTS: This should probably be asynced to release the data ??? //nvm i think
         
         var peaks : [Float] = []
         
-        let kDivCons : Float = 1.035
+        let kDivCons : Float = 1.035 // kDivCons is a constant which can be tuned to affect of the relative loudness
         var topRng = 2205
-        var btmRng = Int(Float(topRng) / kDivCons) // 1.25 is a constant which may need tunning // Another note 1.25 is way too big so if u see this it needs to be smaller
+        var btmRng = Int(Float(topRng) / kDivCons) //Constant^
         
         topRng = Int(Float(topRng) / kDivCons) //Constant^
         btmRng = Int(Float(topRng) / kDivCons) //Constant^
         
-        for _ in 1...100 { //NTS split trebel levels from bass levels
+        for _ in 1...100 {
             var avgPeak : Float = 0.0
             vDSP_maxmgv((complex.realp + topRng), 1, &avgPeak, vDSP_Length(topRng - btmRng))
             
@@ -89,7 +83,6 @@ public class volume {
         
         // Getting peak audio value
         var peak : Float = 0.0
-//        vDSP_maxmgv((complex.realp + topRng), 1, &peak, vDSP_Length(2205 - (Float(btmRng) * kDivCons))) //May want average instead actually
         vDSP_meamgv((complex.realp + topRng), 1, &peak, vDSP_Length(2205 - (Float(btmRng) * kDivCons)))
         if peak > trailingPeak {
             trailingPeak = peak
@@ -102,7 +95,7 @@ public class volume {
         
         switch method { //switchs volume scale calculations
         case 0:
-            let shifter = 10.0 / (peaks.max() ?? 1.0) //Sorry but this error must stay
+            let shifter = 10.0 / (peaks.max() ?? 1.0)
             
             print(peaks.max() as Any, shifter)
             for i in 0...99 {
@@ -120,7 +113,8 @@ public class volume {
             for i in 0...99 {
                 let p = sortedPeaks.firstIndex(of: peaks[i])!
                 do {
-                    switch Float(p) / 99.0 {
+                    let relLoud = Float(p) / 99.0
+                    switch relLoud {
                     case 0.9...1.0:
                         finalPeaks.append(10)
                     case 0.8..<0.9:
