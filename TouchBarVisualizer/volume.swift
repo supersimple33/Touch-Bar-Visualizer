@@ -94,7 +94,7 @@ public class volume {
         var finalPeaks : [Int] = []
         
         switch method { //switchs volume scale calculations
-        case 0:
+        case 0: // All volumes based off of max shifted downwards, no manipulation
             let shifter = 10.0 / (peaks.max() ?? 1.0)
             print(peaks.max() as Any, shifter)
             for i in 0...99 {
@@ -108,7 +108,7 @@ public class volume {
             }
         case 1:
             let sortedPeaks = peaks.sorted()
-            for i in 0...99 {
+            for i in 0...99 { // Each loudness level has equal number of frequencies
                 let p = sortedPeaks.firstIndex(of: peaks[i])!
                 do {
                     let relLoud =  10.0 * Float(p) / 99.0
@@ -116,14 +116,13 @@ public class volume {
                     guard peakiness >= 0 && peakiness <= 10 else {
                         peakiness = 0
                         print("error occured index out of bounds")
-                        continue
                     }
                     finalPeaks.append(peakiness)
                 }
             }
         case 2:
             let s = powf(peaks.max()!, 0.1)
-            for i in 0...99 {
+            for i in 0...99 { // Number of frequencies in each loudness level varies logarithmically
                 if peaks[i] == 0.0 {
                     finalPeaks.append(0)
                     continue
