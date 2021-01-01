@@ -79,21 +79,21 @@ class ViewController: NSViewController {
         
         // Find all audio devices
         let systemDefault = AudioDevice.defaultOutputDevice()
-        guard let soundFlower = AudioDevice.lookup(by: "SoundflowerEngine:0") else {
-            fatalError("Soundflower not installed") // better error handling
+        guard let blackHole = AudioDevice.lookup(by: "BlackHole2ch_UID") else {
+            fatalError("BlackHole not installed: install blackhole or manipulate source for other inputs") // add better error handling
         }
         
         // Set max Volume
-        soundFlower.setVolume(1.0, channel: 0, direction: .recording)
-        soundFlower.setVolume(1.0, channel: 1, direction: .recording)
-        soundFlower.setVolume(1.0, channel: 2, direction: .recording)
-        soundFlower.setVolume(1.0, channel: 0, direction: .playback)
-        soundFlower.setVolume(1.0, channel: 1, direction: .playback)
-        soundFlower.setVolume(1.0, channel: 2, direction: .playback)
+        blackHole.setVolume(1.0, channel: 0, direction: .recording)
+        blackHole.setVolume(1.0, channel: 1, direction: .recording)
+        blackHole.setVolume(1.0, channel: 2, direction: .recording)
+        blackHole.setVolume(1.0, channel: 0, direction: .playback)
+        blackHole.setVolume(1.0, channel: 1, direction: .playback)
+        blackHole.setVolume(1.0, channel: 2, direction: .playback)
         
-        let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: soundFlower.uid! as CFString] as CFDictionary] as CFArray
+        let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
         
-        newAuds.newAggDevice(devices, soundFlower.id)
+        newAuds.newAggDevice(devices, blackHole.id)
     }
 
     func setup(){
