@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* volume.swift */; };
+		FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */; };
 		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
 		FEBA3EBC247DAEB200F93677 /* textScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* textScene.swift */; };
 		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
@@ -21,6 +22,16 @@
 		FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* colorScene.swift */; };
 		FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943922A9C02B00DDD0F3 /* WindowController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE4B470D25A0BCC8006B7A72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FED2D1B92260F99100D23B25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FED2D1C02260F99100D23B25;
+			remoteInfo = TouchBarVisualizer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FE4B847C231DF455008B130C /* Embed Frameworks */ = {
@@ -43,6 +54,9 @@
 		FE0F10EC24492540001F8976 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateApi.h; sourceTree = "<group>"; };
 		FE2787BA22710F3600B8E4B4 /* volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = volume.swift; sourceTree = "<group>"; };
+		FE4B470825A0BCC8006B7A72 /* TouchBarVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchBarVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarVisualizerTests.swift; sourceTree = "<group>"; };
+		FE4B470C25A0BCC8006B7A72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE4B8575231F3A65008B130C /* NewAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAudioDevice.h; sourceTree = "<group>"; };
 		FE4B8576231F3A65008B130C /* NewAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAudioDevice.m; sourceTree = "<group>"; };
@@ -60,6 +74,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FE4B470525A0BCC8006B7A72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FED2D1BE2260F99100D23B25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,10 +102,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FE4B470925A0BCC8006B7A72 /* TouchBarVisualizerTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */,
+				FE4B470C25A0BCC8006B7A72 /* Info.plist */,
+			);
+			path = TouchBarVisualizerTests;
+			sourceTree = "<group>";
+		};
 		FED2D1B82260F99100D23B25 = {
 			isa = PBXGroup;
 			children = (
 				FED2D1C32260F99100D23B25 /* TouchBarVisualizer */,
+				FE4B470925A0BCC8006B7A72 /* TouchBarVisualizerTests */,
 				FED2D1C22260F99100D23B25 /* Products */,
 				FEDD7EE4231876CE00B2CE8A /* Frameworks */,
 				C6685BD50F0FED2B3F7A3BA7 /* Pods */,
@@ -95,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */,
+				FE4B470825A0BCC8006B7A72 /* TouchBarVisualizerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +165,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FE4B470725A0BCC8006B7A72 /* TouchBarVisualizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE4B470F25A0BCC8006B7A72 /* Build configuration list for PBXNativeTarget "TouchBarVisualizerTests" */;
+			buildPhases = (
+				FE4B470425A0BCC8006B7A72 /* Sources */,
+				FE4B470525A0BCC8006B7A72 /* Frameworks */,
+				FE4B470625A0BCC8006B7A72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE4B470E25A0BCC8006B7A72 /* PBXTargetDependency */,
+			);
+			name = TouchBarVisualizerTests;
+			productName = TouchBarVisualizerTests;
+			productReference = FE4B470825A0BCC8006B7A72 /* TouchBarVisualizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FED2D1C02260F99100D23B25 /* TouchBarVisualizer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FED2D1D12260F99200D23B25 /* Build configuration list for PBXNativeTarget "TouchBarVisualizer" */;
@@ -159,10 +209,14 @@
 		FED2D1B92260F99100D23B25 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Addison Hanrattie";
 				TargetAttributes = {
+					FE4B470725A0BCC8006B7A72 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = FED2D1C02260F99100D23B25;
+					};
 					FED2D1C02260F99100D23B25 = {
 						CreatedOnToolsVersion = 10.2;
 						LastSwiftMigration = 1030;
@@ -191,11 +245,19 @@
 			projectRoot = "";
 			targets = (
 				FED2D1C02260F99100D23B25 /* TouchBarVisualizer */,
+				FE4B470725A0BCC8006B7A72 /* TouchBarVisualizerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FE4B470625A0BCC8006B7A72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FED2D1BF2260F99100D23B25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +312,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FE4B470425A0BCC8006B7A72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FED2D1BD2260F99100D23B25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,6 +337,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FE4B470E25A0BCC8006B7A72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FED2D1C02260F99100D23B25 /* TouchBarVisualizer */;
+			targetProxy = FE4B470D25A0BCC8006B7A72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FED2D1CA2260F99200D23B25 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -279,6 +357,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FE4B471025A0BCC8006B7A72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TouchBarVisualizerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TouchBarVisualizer.app/Contents/MacOS/TouchBarVisualizer";
+			};
+			name = Debug;
+		};
+		FE4B471125A0BCC8006B7A72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z9MH7A898M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TouchBarVisualizerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TouchBarVisualizer.app/Contents/MacOS/TouchBarVisualizer";
+			};
+			name = Release;
+		};
 		FED2D1CF2260F99200D23B25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -476,6 +598,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FE4B470F25A0BCC8006B7A72 /* Build configuration list for PBXNativeTarget "TouchBarVisualizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE4B471025A0BCC8006B7A72 /* Debug */,
+				FE4B471125A0BCC8006B7A72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FED2D1BC2260F99100D23B25 /* Build configuration list for PBXProject "TouchBarVisualizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

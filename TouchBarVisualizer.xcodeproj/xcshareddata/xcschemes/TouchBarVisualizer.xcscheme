@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FE4B470725A0BCC8006B7A72"
+               BuildableName = "TouchBarVisualizerTests.xctest"
+               BlueprintName = "TouchBarVisualizerTests"
+               ReferencedContainer = "container:TouchBarVisualizer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
