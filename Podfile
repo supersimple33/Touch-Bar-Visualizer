@@ -6,6 +6,6 @@ target 'TouchBarVisualizer' do
   use_frameworks!
 
   # Pods for TouchBarVisualizer
-  pod 'AMCoreAudio'
+  pod 'AMCoreAudio', '<= 3.3.1'
   
 end

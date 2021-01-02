@@ -35,6 +35,7 @@ static AudioObjectID aggDeviceID = 0;
     if (result)
     {
         printf("Error: %d\n", result);
+        // TODO: need to find aggDeviceID if already existent
     } else {
         aggDeviceID = resulting_id;
     }

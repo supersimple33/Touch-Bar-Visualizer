@@ -1,16 +1,16 @@
 PODS:
-  - AMCoreAudio (3.4)
+  - AMCoreAudio (3.3.1)
 
 DEPENDENCIES:
-  - AMCoreAudio
+  - AMCoreAudio (<= 3.3.1)
 
 SPEC REPOS:
   trunk:
     - AMCoreAudio
 
 SPEC CHECKSUMS:
-  AMCoreAudio: dc23ebb735541a90fc8167435ad25bfa5bff8b89
+  AMCoreAudio: 6bf97d548d02ebb75b56c1cbf6b1f87bcfdeb748
 
-PODFILE CHECKSUM: 6c9969c64ed1c934980728155d69976c77b7b9b4
+PODFILE CHECKSUM: 16b9449b0f4297bea05563e10f3da4d7d501208e
 
 COCOAPODS: 1.10.0
