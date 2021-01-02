@@ -10,16 +10,17 @@
 		B2D92833857334F2BA5C0191 /* Pods_TouchBarVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F303AEDB22848379F3B97968 /* Pods_TouchBarVisualizer.framework */; };
 		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* volume.swift */; };
+		FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* Volume.swift */; };
 		FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */; };
+		FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */; };
 		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
-		FEBA3EBC247DAEB200F93677 /* textScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* textScene.swift */; };
+		FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* TextScene.swift */; };
 		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
 		FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C42260F99100D23B25 /* AppDelegate.swift */; };
 		FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C62260F99100D23B25 /* ViewController.swift */; };
 		FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1CA2260F99200D23B25 /* Main.storyboard */; };
-		FEF6943622A9A89C00DDD0F3 /* colorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943522A9A89C00DDD0F3 /* colorView.swift */; };
-		FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* colorScene.swift */; };
+		FEF6943622A9A89C00DDD0F3 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943522A9A89C00DDD0F3 /* ColorView.swift */; };
+		FEF6943822A9AE9200DDD0F3 /* ColorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */; };
 		FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943922A9C02B00DDD0F3 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,14 +54,15 @@
 		F303AEDB22848379F3B97968 /* Pods_TouchBarVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0F10EC24492540001F8976 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateApi.h; sourceTree = "<group>"; };
-		FE2787BA22710F3600B8E4B4 /* volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = volume.swift; sourceTree = "<group>"; };
+		FE2787BA22710F3600B8E4B4 /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
 		FE4B470825A0BCC8006B7A72 /* TouchBarVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchBarVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarVisualizerTests.swift; sourceTree = "<group>"; };
 		FE4B470C25A0BCC8006B7A72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTests.swift; sourceTree = "<group>"; };
 		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE4B8575231F3A65008B130C /* NewAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAudioDevice.h; sourceTree = "<group>"; };
 		FE4B8576231F3A65008B130C /* NewAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAudioDevice.m; sourceTree = "<group>"; };
-		FEBA3EBB247DAEB200F93677 /* textScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textScene.swift; sourceTree = "<group>"; };
+		FEBA3EBB247DAEB200F93677 /* TextScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScene.swift; sourceTree = "<group>"; };
 		FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBarVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED2D1C42260F99100D23B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,8 +70,8 @@
 		FED2D1CB2260F99200D23B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FED2D1CD2260F99200D23B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchBarVisualizer.entitlements; sourceTree = "<group>"; };
-		FEF6943522A9A89C00DDD0F3 /* colorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorView.swift; sourceTree = "<group>"; };
-		FEF6943722A9AE9200DDD0F3 /* colorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorScene.swift; sourceTree = "<group>"; };
+		FEF6943522A9A89C00DDD0F3 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScene.swift; sourceTree = "<group>"; };
 		FEF6943922A9C02B00DDD0F3 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */,
+				FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */,
 				FE4B470C25A0BCC8006B7A72 /* Info.plist */,
 			);
 			path = TouchBarVisualizerTests;
@@ -137,10 +140,10 @@
 				FED2D1C42260F99100D23B25 /* AppDelegate.swift */,
 				FED2D1C62260F99100D23B25 /* ViewController.swift */,
 				FEF6943922A9C02B00DDD0F3 /* WindowController.swift */,
-				FE2787BA22710F3600B8E4B4 /* volume.swift */,
-				FEF6943522A9A89C00DDD0F3 /* colorView.swift */,
-				FEF6943722A9AE9200DDD0F3 /* colorScene.swift */,
-				FEBA3EBB247DAEB200F93677 /* textScene.swift */,
+				FE2787BA22710F3600B8E4B4 /* Volume.swift */,
+				FEF6943522A9A89C00DDD0F3 /* ColorView.swift */,
+				FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */,
+				FEBA3EBB247DAEB200F93677 /* TextScene.swift */,
 				FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */,
 				FED2D1CA2260F99200D23B25 /* Main.storyboard */,
 				FED2D1CD2260F99200D23B25 /* Info.plist */,
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */,
+				FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,14 +328,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEF6943822A9AE9200DDD0F3 /* colorScene.swift in Sources */,
+				FEF6943822A9AE9200DDD0F3 /* ColorScene.swift in Sources */,
 				FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */,
 				FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */,
 				FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */,
-				FEF6943622A9A89C00DDD0F3 /* colorView.swift in Sources */,
-				FEBA3EBC247DAEB200F93677 /* textScene.swift in Sources */,
+				FEF6943622A9A89C00DDD0F3 /* ColorView.swift in Sources */,
+				FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */,
 				FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */,
-				FE2787BB22710F3600B8E4B4 /* volume.swift in Sources */,
+				FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

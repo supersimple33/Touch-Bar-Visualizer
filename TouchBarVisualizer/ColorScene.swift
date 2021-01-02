@@ -1,5 +1,5 @@
 //
-//  colorScene.swift
+//  ColorScene.swift
 //  TouchBarVisualizer
 //
 //  Created by Addison Hanrattie on 6/6/19.
@@ -9,7 +9,7 @@
 import Cocoa
 import SpriteKit
 
-class colorScene: SKScene {
+class ColorScene: SKScene {
     
     var ready = false
     let height : CGFloat = 30.0

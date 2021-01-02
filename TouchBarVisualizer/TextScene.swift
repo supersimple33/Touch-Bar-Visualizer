@@ -1,5 +1,5 @@
 //
-//  textScene.swift
+//  TextScene.swift
 //  TouchBarVisualizer
 //
 //  Created by Addison Hanrattie on 5/26/20.
@@ -9,7 +9,7 @@
 import Cocoa
 import SpriteKit
 
-class textScene: SKScene {
+class TextScene: SKScene {
     override func didMove(to view: SKView) {
         self.backgroundColor = .black
         let node = SKSpriteNode(imageNamed: "arrow")

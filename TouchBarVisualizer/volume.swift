@@ -1,5 +1,5 @@
 //
-//  volume.swift
+//  Volume.swift
 //  TouchBarVisualizer
 //
 //  Created by Addison Hanrattie on 4/24/19.
@@ -10,12 +10,12 @@ import Cocoa
 import AVFoundation
 import Accelerate
 
-public class volume {
+public class Volume {
     
     public var sampleRate = 0.0
     var trailingPeak : Float = 0.0000000001
     
-    let col : colorView = colorView()
+    let col : ColorView = ColorView()
     
     public func analyze(buffer: AVAudioPCMBuffer) -> ([Int], Int) {
         // refrenced from stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
