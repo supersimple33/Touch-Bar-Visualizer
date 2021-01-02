@@ -11,7 +11,6 @@
 		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* Volume.swift */; };
-		FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */; };
 		FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */; };
 		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
 		FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* TextScene.swift */; };
@@ -56,7 +55,6 @@
 		FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateApi.h; sourceTree = "<group>"; };
 		FE2787BA22710F3600B8E4B4 /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
 		FE4B470825A0BCC8006B7A72 /* TouchBarVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchBarVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarVisualizerTests.swift; sourceTree = "<group>"; };
 		FE4B470C25A0BCC8006B7A72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTests.swift; sourceTree = "<group>"; };
 		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 		FE4B470925A0BCC8006B7A72 /* TouchBarVisualizerTests */ = {
 			isa = PBXGroup;
 			children = (
-				FE4B470A25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift */,
 				FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */,
 				FE4B470C25A0BCC8006B7A72 /* Info.plist */,
 			);
@@ -319,7 +316,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE4B470B25A0BCC8006B7A72 /* TouchBarVisualizerTests.swift in Sources */,
 				FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
