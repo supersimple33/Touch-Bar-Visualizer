@@ -10,9 +10,11 @@ import Foundation
 
 class Fastfile: LaneFile {
 	func checkLane() {
+        setupCircleCi()
         desc("Run code checks")
 		// add actions here: https://docs.fastlane.tools/actions
         swiftlint(path:"TouchBarVisualizer") //,  ignoreExitStatus: true, raiseIfSwiftlintError: false
+        swiftlint(path:"TouchBarVisualizerTests")
         scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer")
 	}
 }
