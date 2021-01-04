@@ -8,4 +8,9 @@ target 'TouchBarVisualizer' do
   # Pods for TouchBarVisualizer
   pod 'AMCoreAudio', '<= 3.3.1'
   
+  target 'TouchBarVisualizerTests' do
+    inherit! :search_paths
+    pod 'AMCoreAudio', '<= 3.3.1'
+  end
+  
 end

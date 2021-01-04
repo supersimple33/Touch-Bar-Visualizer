@@ -14,13 +14,17 @@
 					<real>6440</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>Local Baseline</string>
+					<key>maxPercentRelativeStandardDeviation</key>
+					<real>20</real>
 				</dict>
 				<key>com.apple.dt.XCTMetric_CPU.instructions_retired</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>12602</real>
+					<real>12600</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>Local Baseline</string>
+					<key>maxPercentRelativeStandardDeviation</key>
+					<real>20</real>
 				</dict>
 				<key>com.apple.dt.XCTMetric_CPU.time</key>
 				<dict>
@@ -28,6 +32,8 @@
 					<real>0.00194</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>Local Baseline</string>
+					<key>maxPercentRelativeStandardDeviation</key>
+					<real>20</real>
 				</dict>
 				<key>com.apple.dt.XCTMetric_Clock.time.monotonic</key>
 				<dict>
@@ -35,6 +41,8 @@
 					<real>0.00152</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>Local Baseline</string>
+					<key>maxPercentRelativeStandardDeviation</key>
+					<real>20</real>
 				</dict>
 				<key>com.apple.dt.XCTMetric_Memory.physical</key>
 				<dict>

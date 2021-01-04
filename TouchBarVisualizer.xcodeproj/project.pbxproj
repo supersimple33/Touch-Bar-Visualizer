@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B036F22C66056952487F742 /* Pods_TouchBarVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBB79A5768AA2EB26294932 /* Pods_TouchBarVisualizerTests.framework */; };
 		B2D92833857334F2BA5C0191 /* Pods_TouchBarVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F303AEDB22848379F3B97968 /* Pods_TouchBarVisualizer.framework */; };
 		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -48,6 +49,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0EBB79A5768AA2EB26294932 /* Pods_TouchBarVisualizerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E206B0DBFB5AA85CE48570A /* Pods-TouchBarVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F02C024DB089BB63D18D245 /* Pods-TouchBarVisualizer-TouchBarVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer-TouchBarVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer-TouchBarVisualizerTests/Pods-TouchBarVisualizer-TouchBarVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		97FC2A3E8FC6A7AA889A303E /* Pods-TouchBarVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
+		B2D81BDCD903F4D6F377CA57 /* Pods-TouchBarVisualizer-TouchBarVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer-TouchBarVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer-TouchBarVisualizerTests/Pods-TouchBarVisualizer-TouchBarVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5F136B8B3C0E4B3C73E4F68 /* Pods-TouchBarVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.release.xcconfig"; sourceTree = "<group>"; };
 		D4D76BA6A733E721E8089FE9 /* Pods-TouchBarVisualizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.debug.xcconfig"; sourceTree = "<group>"; };
 		F303AEDB22848379F3B97968 /* Pods_TouchBarVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B036F22C66056952487F742 /* Pods_TouchBarVisualizerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +105,10 @@
 			children = (
 				D4D76BA6A733E721E8089FE9 /* Pods-TouchBarVisualizer.debug.xcconfig */,
 				B5F136B8B3C0E4B3C73E4F68 /* Pods-TouchBarVisualizer.release.xcconfig */,
+				8F02C024DB089BB63D18D245 /* Pods-TouchBarVisualizer-TouchBarVisualizerTests.debug.xcconfig */,
+				B2D81BDCD903F4D6F377CA57 /* Pods-TouchBarVisualizer-TouchBarVisualizerTests.release.xcconfig */,
+				1E206B0DBFB5AA85CE48570A /* Pods-TouchBarVisualizerTests.debug.xcconfig */,
+				97FC2A3E8FC6A7AA889A303E /* Pods-TouchBarVisualizerTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 			children = (
 				FE0F10EC24492540001F8976 /* DFRFoundation.framework */,
 				F303AEDB22848379F3B97968 /* Pods_TouchBarVisualizer.framework */,
+				0EBB79A5768AA2EB26294932 /* Pods_TouchBarVisualizerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -169,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE4B470F25A0BCC8006B7A72 /* Build configuration list for PBXNativeTarget "TouchBarVisualizerTests" */;
 			buildPhases = (
+				1F3001DC19161EF137A4DAE2 /* [CP] Check Pods Manifest.lock */,
 				FE4B470425A0BCC8006B7A72 /* Sources */,
 				FE4B470525A0BCC8006B7A72 /* Frameworks */,
 				FE4B470625A0BCC8006B7A72 /* Resources */,
+				C6C1F78D0F713923B230A05D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +284,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1F3001DC19161EF137A4DAE2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TouchBarVisualizerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6C1F78D0F713923B230A05D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C8BC644572108F751DB53299 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,6 +412,7 @@
 /* Begin XCBuildConfiguration section */
 		FE4B471025A0BCC8006B7A72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E206B0DBFB5AA85CE48570A /* Pods-TouchBarVisualizerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -381,6 +435,7 @@
 		};
 		FE4B471125A0BCC8006B7A72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97FC2A3E8FC6A7AA889A303E /* Pods-TouchBarVisualizerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -541,6 +596,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MARKETING_VERSION = 0.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizer;
@@ -579,6 +635,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MARKETING_VERSION = 0.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.addisonhanrattie.TouchBarVisualizer;
@@ -605,7 +662,7 @@
 				FE4B471125A0BCC8006B7A72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FED2D1BC2260F99100D23B25 /* Build configuration list for PBXProject "TouchBarVisualizer" */ = {
 			isa = XCConfigurationList;
@@ -614,7 +671,7 @@
 				FED2D1D02260F99200D23B25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FED2D1D12260F99200D23B25 /* Build configuration list for PBXNativeTarget "TouchBarVisualizer" */ = {
 			isa = XCConfigurationList;
@@ -623,7 +680,7 @@
 				FED2D1D32260F99200D23B25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
