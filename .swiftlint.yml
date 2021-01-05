@@ -1,0 +1,5 @@
+disabled_rules: # rule identifiers to exclude from running
+  - identifier_name #rule for checking variable conditions (Upper case , lower case , underscore )
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  # - Carthage
+  - Pods
