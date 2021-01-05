@@ -11,7 +11,7 @@ jobs:
       FASTLANE_LANE: check
     steps:
       - checkout
-      # - run: sudo bundle update --bundler
+      - run: sudo bundle update --bundler
       - run: brew install swiftlint
       - run: bundle install
       - run: pod install # Install CocoaPods dependencies
