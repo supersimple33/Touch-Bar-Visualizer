@@ -1,0 +1,30 @@
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+version: 2.1
+jobs:
+  build-and-test:
+    macos:
+      xcode: 12.3.0 # Specify the Xcode version to use
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: check
+    steps:
+      - checkout
+      - run: sudo bundle update --bundler
+      - run: brew install swiftlint
+      - run: bundle install
+      - run: pod install # Install CocoaPods dependencies
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      # Collect XML test results data to show in the UI, and save the same XML
+      # files under test-results folder in the Artifacts tab
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+workflows:
+  build-test:
+    jobs:
+      - build-and-test
