@@ -9,7 +9,7 @@ The Touch Bar Visualizer is a cosmetic program used to display the sound output 
 These instructions will get you a copy of the project up and running on your local machine for general use.
 ### Prerequisites
 In order to listen to system sound Touch Bar Visualizer requires BlackHole to be installed. BlackHole can be found [here](https://github.com/ExistentialAudio/BlackHole). Follow the instructions from BlackHole in order to download and run the installer and create a new audio device channel. 
-- BlackHole may also be installed view homebrew:  `brew install blackhole-2ch`
+- BlackHole may also be installed view homebrew: `brew install blackhole-2ch`
 ### Installation
 Once BackHole has been installed you may either download the source of this project or download the latest [release](https://github.com/supersimple33/Touch-Bar-Visualizer/releases).
 ### Usage
