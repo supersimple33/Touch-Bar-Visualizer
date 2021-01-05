@@ -91,7 +91,7 @@ class ViewController: NSViewController {
         blackHole.setVolume(1.0, channel: 1, direction: .playback)
         blackHole.setVolume(1.0, channel: 2, direction: .playback)
         
-        let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
+        let devices=[[kAudioSubDeviceUIDKey as CFString:(systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
         
         newAuds.newAggDevice(devices, blackHole.id)
     }

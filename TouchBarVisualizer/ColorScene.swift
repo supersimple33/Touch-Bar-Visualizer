@@ -78,7 +78,9 @@ class ColorScene: SKScene {
     }
     
     @objc func appChange(_ notification: NSNotification) {
-        let app = notification.userInfo!["NSWorkspaceApplicationKey"] as! NSRunningApplication
+        guard let app = notification.userInfo!["NSWorkspaceApplicationKey"] as? NSRunningApplication else {
+            fatalError("NSWorkspaceApplicationKey was not of type NSRunningApplication")
+        }
         print(app.localizedName!) // track changes
         if "TouchBarVisualizer" == app.localizedName {
             active = true
