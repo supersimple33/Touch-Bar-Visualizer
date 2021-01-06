@@ -2,6 +2,10 @@
 # https://circleci.com/docs/2.0/testing-ios/
 
 version: 2.1
+
+orbs:
+  mac-permissions: circleci/macos
+
 jobs:
   build-and-test:
     macos:
