@@ -11,6 +11,7 @@ import Foundation
 class Fastfile: LaneFile {
     
     func beforeAll() {
+        xcversion(version: "12.3")
         setupCircleCi()
     }
     
@@ -20,6 +21,11 @@ class Fastfile: LaneFile {
         swiftlint(path:"TouchBarVisualizer") //,  ignoreExitStatus: true, raiseIfSwiftlintError: false
         swiftlint(path:"TouchBarVisualizerTests")
 //        scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer")
-        buildMacApp(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer")
+//        buildMacApp(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer")
+//        xcbuild(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer", CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO)
+        scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer", derivedDataPath: "build", skipBuild: true, buildForTesting: true, xcargs:" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO")
+        scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
 	}
 }
+//xcodebuild build-for-testing -scheme "TouchBarVisualizer" -workspace "TouchBarVisualizer.xcworkspace" -derivedDataPath "build" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+//xcodebuild test-without-building -xctestrun "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun" -destination "platform=OS X,arch=x86_64" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
