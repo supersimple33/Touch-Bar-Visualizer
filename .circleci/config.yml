@@ -3,6 +3,9 @@
 
 version: 2.1
 
+orbs:
+  mac-permissions: circleci/macos@1.0.0
+
 jobs:
   build-and-test:
     macos:
@@ -16,6 +19,10 @@ jobs:
       - run: brew install swiftlint
       - run: bundle install
       - run: pod install # Install CocoaPods dependencies
+      - mac-permissions/add-permission:
+          bundle-id: "com.addisonhanrattie.TouchBarVisualizer"
+          permission-type: "kTCCServiceMicrophone"
+      - mac-permissions/list-permissions
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
