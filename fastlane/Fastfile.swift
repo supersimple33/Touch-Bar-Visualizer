@@ -26,7 +26,7 @@ class Fastfile: LaneFile {
         if #available(OSX 11.1, *) {
             scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
         } else {
-            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx10.15.5-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
+            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx10.15-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
         }
 	}
 }
