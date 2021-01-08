@@ -59,6 +59,16 @@
 					<string>Local Baseline</string>
 				</dict>
 			</dict>
+			<key>testAnalyzePerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_CPU.instructions_retired</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>11703</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
 		</dict>
 	</dict>
 </dict>

@@ -43,7 +43,8 @@ class VolumeTests: XCTestCase {
         vol = nil
         buffer = nil
     }
-
+    
+    // Check Core Functions Work
     func testAnalyze() throws {
         let ret = vol.analyze(buffer: buffer)
         
@@ -59,7 +60,10 @@ class VolumeTests: XCTestCase {
             XCTAssertGreaterThanOrEqual(elem, 0, "One of the levels was below the range") //, file: "Volume.swift", line: 20)
             XCTAssertLessThanOrEqual(elem, 10, "One of the levels was above the range") //, file: "Volume.swift", line: 20)
         }
-        
+    }
+    
+    // Check executing in reasonable amount of time
+    func testAnalyzePerformance() throws {
         // Check Performance of analyze
         let options = XCTMeasureOptions.default
         options.iterationCount = 50

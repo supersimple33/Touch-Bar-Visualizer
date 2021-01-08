@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='TouchBarVisualizerTests.xctest' tests='1' failures='0'>
   <testsuite name='TouchBarVisualizerTests.VolumeTests' tests='1' failures='0'>
-    <testcase classname='TouchBarVisualizerTests.VolumeTests' name='testAnalyze' time='0.197'/>
+    <testcase classname='TouchBarVisualizerTests.VolumeTests' name='testAnalyze' time='0.081'/>
   </testsuite>
 </testsuites>
