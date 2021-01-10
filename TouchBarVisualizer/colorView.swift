@@ -1,5 +1,5 @@
 //
-//  colorView.swift
+//  ColorView.swift
 //  TouchBarVisualizer
 //
 //  Created by Addison Hanrattie on 6/6/19.
@@ -9,10 +9,10 @@
 import Cocoa
 import SpriteKit
 
-class colorView: SKView {
+class ColorView: SKView {
     
-    let colScene = colorScene(size: CGSize(width: 1005, height: 30))
-    let tScene = textScene(size: CGSize(width: 1005, height: 30))
+    let colScene = ColorScene(size: CGSize(width: 1005, height: 30))
+    let tScene = TextScene(size: CGSize(width: 1005, height: 30))
     
     func presentColor() {
         self.presentScene(colScene)

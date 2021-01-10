@@ -18,10 +18,10 @@ class ViewController: NSViewController {
 
     let audioEngine = AVAudioEngine()
     let itemID = NSTouchBarItem.Identifier(rawValue: "com.addisonhanrattie.visualizer.color")
-    var vol : volume = volume()
+    var vol : Volume = Volume()
     var throwAway = 0
     
-    var colorSKView = colorView()
+    var colorSKView = ColorView()
     let newAuds : NewAudioDevice = NewAudioDevice()
     
     @IBOutlet var progressCircle: NSProgressIndicator!
@@ -91,7 +91,7 @@ class ViewController: NSViewController {
         blackHole.setVolume(1.0, channel: 1, direction: .playback)
         blackHole.setVolume(1.0, channel: 2, direction: .playback)
         
-        let devices = [[kAudioSubDeviceUIDKey as CFString : (systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
+        let devices=[[kAudioSubDeviceUIDKey as CFString:(systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
         
         newAuds.newAggDevice(devices, blackHole.id)
     }
@@ -154,7 +154,7 @@ extension ViewController: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         let item = NSCustomTouchBarItem(identifier: itemID)
-        colorSKView = colorView()
+        colorSKView = ColorView()
         item.view = colorSKView
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.colorSKView.presentText()
