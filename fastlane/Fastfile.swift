@@ -22,7 +22,7 @@ class Fastfile: LaneFile {
         swiftlint(path:"TouchBarVisualizerTests")
         
         scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer", derivedDataPath: "build", skipBuild: true, buildForTesting: true, xcargs:" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO")
-        
+        scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
 //        if #available(OSX 11.1, *) {
 //            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
 //        } else {
