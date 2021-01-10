@@ -23,11 +23,11 @@ class Fastfile: LaneFile {
         
         scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer", derivedDataPath: "build", skipBuild: true, buildForTesting: true, xcargs:" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO")
         
-        if #available(OSX 11.1, *) {
-            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
-        } else {
-            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx10.15-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
-        }
+//        if #available(OSX 11.1, *) {
+//            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
+//        } else {
+//            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx10.15-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
+//        }
 	}
 }
 //xcodebuild build-for-testing -scheme "TouchBarVisualizer" -workspace "TouchBarVisualizer.xcworkspace" -derivedDataPath "build" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
