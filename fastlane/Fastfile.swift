@@ -22,12 +22,15 @@ class Fastfile: LaneFile {
         swiftlint(path:"TouchBarVisualizerTests")
         
         scan(workspace: "TouchBarVisualizer.xcworkspace", scheme: "TouchBarVisualizer", derivedDataPath: "build", skipBuild: true, buildForTesting: true, xcargs:" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO")
-        scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
-//        if #available(OSX 11.1, *) {
-//            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx11.1-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
-//        } else {
-//            scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: "build/Build/Products/TouchBarVisualizer_macosx10.15-x86_64.xctestrun", derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
-//        }
+        
+        let fileManager = FileManager.default
+        let files = try! fileManager.contentsOfDirectory(at: URL(string: "./build/Build/Products/")!, includingPropertiesForKeys: nil)
+        var name = files[0].path
+        if !name.contains("xctestrun") {
+            name = files[1].path
+        }
+        
+        scan(onlyTesting: "TouchBarVisualizerTests/VolumeTests/testAnalyze", xctestrun: name, derivedDataPath: "build", skipBuild: true, testWithoutBuilding: true)
 	}
 }
 //xcodebuild build-for-testing -scheme "TouchBarVisualizer" -workspace "TouchBarVisualizer.xcworkspace" -derivedDataPath "build" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
