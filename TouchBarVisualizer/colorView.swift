@@ -10,15 +10,15 @@ import Cocoa
 import SpriteKit
 
 class ColorView: SKView {
-    
-    let colScene = ColorScene(size: CGSize(width: 1005, height: 30))
-    let tScene = TextScene(size: CGSize(width: 1005, height: 30))
-    
-    func presentColor() {
-        self.presentScene(colScene)
-    }
-    
-    func presentText() {
-        self.presentScene(tScene)
-    }
+	
+	let colScene = ColorScene(size: CGSize(width: 1005, height: 30))
+	let tScene = TextScene(size: CGSize(width: 1005, height: 30))
+	
+	func presentColor() {
+		self.presentScene(colScene)
+	}
+	
+	func presentText() {
+		self.presentScene(tScene)
+	}
 }
