@@ -48,7 +48,7 @@ static AudioObjectID aggDeviceID = 0;
 
 - (void) destroyAggDevice {
 	AudioHardwareDestroyAggregateDevice(aggDeviceID);
-	printf("destroyed");
+	printf("destroyed\n");
 }
 
 - (void) setAggDeviceID:(AudioObjectID)oldID {

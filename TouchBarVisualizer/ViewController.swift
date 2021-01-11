@@ -16,7 +16,7 @@ import AMCoreAudio
 
 class ViewController: NSViewController {
 
-	let audioEngine = AVAudioEngine()
+	var audioEngine = AVAudioEngine()
 	let itemID = NSTouchBarItem.Identifier(rawValue: "com.addisonhanrattie.visualizer.color")
 	var vol : Volume = Volume()
 	var throwAway = 0
@@ -38,6 +38,9 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		createAudioDevice()
 		setup()
+		
+		NotificationCenter.defaultCenter.subscribe(self, eventType: AudioHardwareEvent.self, dispatchQueue: DispatchQueue.main)
+		
 		Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
 			if self.progressCircle.doubleValue == self.progressCircle.maxValue {
 				self.progressCircle.doubleValue = 0.0
@@ -47,6 +50,10 @@ class ViewController: NSViewController {
 				self.progressCircle2.increment(by: 0.1)
 			}
 		}
+	}
+	
+	deinit {
+		NotificationCenter.defaultCenter.unsubscribe(self, eventType: AudioHardwareEvent.self)
 	}
 	
 	override func viewDidAppear() {
@@ -94,6 +101,7 @@ class ViewController: NSViewController {
 					let dev = AudioDevice.lookup(by: devID)!
 					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
+						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers
 						break
 					}
 				}
@@ -109,6 +117,10 @@ class ViewController: NSViewController {
 		blackHole.setVolume(1.0, channel: 1, direction: .playback)
 		blackHole.setVolume(1.0, channel: 2, direction: .playback)
 		
+		// Make sure we are all working at the same sample rate
+		blackHole.setNominalSampleRate(48000)
+		systemDefault.setNominalSampleRate(48000)
+		
 		// Create A List of Devices for the Agg Dev
 		let devices=[[kAudioSubDeviceUIDKey as CFString:systemDefault.uid! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
 		
@@ -117,10 +129,12 @@ class ViewController: NSViewController {
 	}
 
 	func setup(){
+		audioEngine = AVAudioEngine()
+		
 		// Check For Device
 		let format = audioEngine.inputNode.outputFormat(forBus: 0)
 		guard format.channelCount == 2 else {
-			fatalError() // Should never be run should be removed
+			fatalError("Expected two channels")
 		}
 
 		print(format)
@@ -146,11 +160,6 @@ class ViewController: NSViewController {
 		} catch {
 			print(error)
 		}
-
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 120) {
-//			self.stop()
-//		}
-
 	}
 
 	func stop(){ // End tapping of audio engine
@@ -191,5 +200,27 @@ extension ViewController: NSTouchBarDelegate {
 
 	func minimizeSystemModal(_ touchBar: NSTouchBar!) {
 		NSTouchBar.minimizeSystemModalTouchBar(touchBar)
+	}
+}
+
+extension ViewController: EventSubscriber {
+	func eventReceiver(_ event: Event) {
+		switch event {
+		case let event as AudioHardwareEvent:
+			switch event {
+			case let .defaultOutputDeviceChanged(audioDevice):
+				print("Default output device changed to \(audioDevice)")
+				if audioDevice.uid! != "TBV Aggregate Device" {
+					// Tear down previous init and rebuild audio device with new source
+					stop()
+					createAudioDevice()
+					setup()
+				}
+			default:
+				break
+			}
+		default:
+			break
+		}
 	}
 }
