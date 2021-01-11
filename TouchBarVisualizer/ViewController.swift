@@ -16,7 +16,7 @@ import AMCoreAudio
 
 class ViewController: NSViewController {
 
-	let audioEngine = AVAudioEngine()
+	var audioEngine = AVAudioEngine()
 	let itemID = NSTouchBarItem.Identifier(rawValue: "com.addisonhanrattie.visualizer.color")
 	var vol : Volume = Volume()
 	var throwAway = 0
@@ -101,6 +101,7 @@ class ViewController: NSViewController {
 					let dev = AudioDevice.lookup(by: devID)!
 					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
+						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers
 						break
 					}
 				}
@@ -116,6 +117,10 @@ class ViewController: NSViewController {
 		blackHole.setVolume(1.0, channel: 1, direction: .playback)
 		blackHole.setVolume(1.0, channel: 2, direction: .playback)
 		
+		// Make sure we are all working at the same sample rate
+		blackHole.setNominalSampleRate(48000)
+		systemDefault.setNominalSampleRate(48000)
+		
 		// Create A List of Devices for the Agg Dev
 		let devices=[[kAudioSubDeviceUIDKey as CFString:systemDefault.uid! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
 		
@@ -124,10 +129,12 @@ class ViewController: NSViewController {
 	}
 
 	func setup(){
+		audioEngine = AVAudioEngine()
+		
 		// Check For Device
 		let format = audioEngine.inputNode.outputFormat(forBus: 0)
 		guard format.channelCount == 2 else {
-			fatalError() // Should never be run should be removed
+			fatalError("Expected two channels")
 		}
 
 		print(format)
@@ -206,11 +213,8 @@ extension ViewController: EventSubscriber {
 				if audioDevice.uid! != "TBV Aggregate Device" {
 					// Tear down previous init and rebuild audio device with new source
 					stop()
-					
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						self.createAudioDevice()
-						self.setup()
-					}
+					createAudioDevice()
+					setup()
 				}
 			default:
 				break
