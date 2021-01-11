@@ -13,6 +13,7 @@ import AVFoundation
 // TODO: create error struct
 
 class VolumeTests: XCTestCase {
+
 	var vol : Volume!
 	var buffer : AVAudioPCMBuffer!
 

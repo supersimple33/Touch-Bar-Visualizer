@@ -10,6 +10,7 @@ import Cocoa
 import SpriteKit
 
 class ColorScene: SKScene {
+
 	
 	var ready = false
 	let height : CGFloat = 30.0
