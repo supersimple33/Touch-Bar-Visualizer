@@ -36,10 +36,6 @@ class ViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		newAuds.destroyAggDevice()
-		
-		
-		
 		createAudioDevice()
 		setup()
 		Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
@@ -81,13 +77,31 @@ class ViewController: NSViewController {
 	
 	func createAudioDevice() {
 		
-		// Find all audio devices
-		let systemDefault = AudioDevice.defaultOutputDevice()
+		// Find all audio devices and verify their existence
+		guard var systemDefault = AudioDevice.defaultOutputDevice() else {
+			fatalError("There was no default system audio device detected")
+		}
 		guard let blackHole = AudioDevice.lookup(by: "BlackHole2ch_UID") else {
-			fatalError("BlackHole not installed: install blackhole or manipulate source for other inputs") // add better error handling
+			fatalError("BlackHole not installed: install blackhole or manipulate source code for other inputs") // add better error handling
 		}
 		
-		// Set max Volume
+		// Deconstruct the Previous Agg Dev If It Existed
+		if let aggDev = AudioDevice.lookup(by: "TBV Aggregate Device") {
+			newAuds.setAggDeviceID(aggDev.id)
+			if systemDefault.id == aggDev.id {
+				for devID in aggDev.ownedObjectIDs()! {
+					// Look for the underlying output attached to the Agg Device
+					let dev = AudioDevice.lookup(by: devID)!
+					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
+						systemDefault = AudioDevice.lookup(by: dev.uid!)!
+						break
+					}
+				}
+			}
+			newAuds.destroyAggDevice()
+		}
+		
+		// Set BlackHole Volume to Max
 		blackHole.setVolume(1.0, channel: 0, direction: .recording)
 		blackHole.setVolume(1.0, channel: 1, direction: .recording)
 		blackHole.setVolume(1.0, channel: 2, direction: .recording)
@@ -95,8 +109,10 @@ class ViewController: NSViewController {
 		blackHole.setVolume(1.0, channel: 1, direction: .playback)
 		blackHole.setVolume(1.0, channel: 2, direction: .playback)
 		
-		let devices=[[kAudioSubDeviceUIDKey as CFString:(systemDefault?.uid)! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
+		// Create A List of Devices for the Agg Dev
+		let devices=[[kAudioSubDeviceUIDKey as CFString:systemDefault.uid! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
 		
+		// Create the Agg Dev
 		newAuds.newAggDevice(devices, blackHole.id)
 	}
 
