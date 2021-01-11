@@ -38,6 +38,9 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		createAudioDevice()
 		setup()
+		
+		NotificationCenter.defaultCenter.subscribe(self, eventType: AudioHardwareEvent.self, dispatchQueue: DispatchQueue.main)
+		
 		Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
 			if self.progressCircle.doubleValue == self.progressCircle.maxValue {
 				self.progressCircle.doubleValue = 0.0
@@ -47,6 +50,10 @@ class ViewController: NSViewController {
 				self.progressCircle2.increment(by: 0.1)
 			}
 		}
+	}
+	
+	deinit {
+		NotificationCenter.defaultCenter.unsubscribe(self, eventType: AudioHardwareEvent.self)
 	}
 	
 	override func viewDidAppear() {
@@ -146,11 +153,6 @@ class ViewController: NSViewController {
 		} catch {
 			print(error)
 		}
-
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 120) {
-//			self.stop()
-//		}
-
 	}
 
 	func stop(){ // End tapping of audio engine
@@ -191,5 +193,30 @@ extension ViewController: NSTouchBarDelegate {
 
 	func minimizeSystemModal(_ touchBar: NSTouchBar!) {
 		NSTouchBar.minimizeSystemModalTouchBar(touchBar)
+	}
+}
+
+extension ViewController: EventSubscriber {
+	func eventReceiver(_ event: Event) {
+		switch event {
+		case let event as AudioHardwareEvent:
+			switch event {
+			case let .defaultOutputDeviceChanged(audioDevice):
+				print("Default output device changed to \(audioDevice)")
+				if audioDevice.uid! != "TBV Aggregate Device" {
+					// Tear down previous init and rebuild audio device with new source
+					stop()
+					
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+						self.createAudioDevice()
+						self.setup()
+					}
+				}
+			default:
+				break
+			}
+		default:
+			break
+		}
 	}
 }
