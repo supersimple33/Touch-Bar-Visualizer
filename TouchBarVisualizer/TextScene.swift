@@ -10,10 +10,10 @@ import Cocoa
 import SpriteKit
 
 class TextScene: SKScene {
-    override func didMove(to view: SKView) {
-        self.backgroundColor = .black
-        let node = SKSpriteNode(imageNamed: "arrow")
-        self.addChild(node)
-        node.position = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
-    }
+	override func didMove(to view: SKView) {
+		self.backgroundColor = .black
+		let node = SKSpriteNode(imageNamed: "arrow")
+		self.addChild(node)
+		node.position = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
+	}
 }
