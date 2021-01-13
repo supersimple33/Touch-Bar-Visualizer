@@ -24,10 +24,29 @@ class ViewController: NSViewController {
 	var colorSKView = ColorView()
 	let newAuds : NewAudioDevice = NewAudioDevice()
 	
+	var useBlackHole = true
+	var manipulatingDevices = false
+	var ignore = false
+	
+	var prevInp: String?
+	var aggregateDeviceID: AudioDeviceID?
+	
 	@IBOutlet var progressCircle: NSProgressIndicator!
 	@IBOutlet var progressCircle2: NSProgressIndicator!
 	
 	@IBOutlet var levelDisplay: NSLevelIndicator!
+	
+	@IBAction func soundSource(_ sender: Any) {
+		useBlackHole = !useBlackHole
+		if useBlackHole {
+			stop()
+			createAudioDevice()
+			setup()
+		} else {
+			stop()
+			newAuds.destroyAggDevice()
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
