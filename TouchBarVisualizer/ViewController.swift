@@ -29,11 +29,6 @@ class ViewController: NSViewController {
 	
 	@IBOutlet var levelDisplay: NSLevelIndicator!
 	
-//	@IBAction func show(_ sender: Any) {
-//		stop()
-//		newAuds.destroyAggDevice()
-//	}
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		createAudioDevice()
