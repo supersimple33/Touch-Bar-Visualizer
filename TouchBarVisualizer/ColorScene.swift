@@ -107,7 +107,7 @@ class ColorScene: SKScene {
 	func moveAJ() {
 		for i in 0...99 {
 			for j in 0...10 {
-				let x : CGFloat = (wid * CGFloat(i + 1)) + 110
+				let x : CGFloat = (wid * CGFloat(i + 1)) + 105
 				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
 			}
 		}
