@@ -24,29 +24,6 @@ class ColorScene: SKScene {
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
 		self.backgroundColor = .black
-		for i in 0...99 {
-			var popul : [SKSpriteNode] = []
-			for c in 0...10 { // 10,9 / 8,7
-				var color : NSColor!
-				if c < 5 {
-					color = .green
-				} else if c < 8 {
-					color = .orange
-				} else {
-					color = .red
-				}
-				let x : CGFloat = (wid * CGFloat(i + 1)) // 110 aprox escape key distance
-				let texture = SKTexture(imageNamed: "square")
-				
-				let rect = SKSpriteNode(texture: texture, color: color, size: CGSize(width: wid, height: 3))
-				rect.colorBlendFactor = 1.0
-				self.addChild(rect)
-				rect.position = CGPoint(x: x, y: (rect.size.height * CGFloat(c - 1)) + (rect.size.height / 2))
-				
-				popul.append(rect)
-			}
-			allNodes.append(popul)
-		}
 		
 		if !ready {
 			self.backgroundColor = .black
@@ -54,6 +31,30 @@ class ColorScene: SKScene {
 		}
 		
 		if !created {
+			for i in 0...99 {
+				var popul : [SKSpriteNode] = []
+				for c in 0...10 { // 10,9 / 8,7
+					var color : NSColor!
+					if c < 5 {
+						color = .green
+					} else if c < 8 {
+						color = .orange
+					} else {
+						color = .red
+					}
+					let x : CGFloat = (wid * CGFloat(i + 1)) // 110 aprox escape key distance
+					let texture = SKTexture(imageNamed: "square")
+					
+					let rect = SKSpriteNode(texture: texture, color: color, size: CGSize(width: wid, height: 3))
+					rect.colorBlendFactor = 1.0
+					self.addChild(rect)
+					rect.position = CGPoint(x: x, y: (rect.size.height * CGFloat(c - 1)) + (rect.size.height / 2))
+					
+					popul.append(rect)
+				}
+				allNodes.append(popul)
+			}
+			
 			NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
 			created = true
 			moveCent() //Correct call point?
@@ -85,12 +86,12 @@ class ColorScene: SKScene {
 		print(app.localizedName!) // track changes
 		if "TouchBarVisualizer" == app.localizedName {
 			active = true
-			print(app.localizedName!, 0)
+			print("Changed to TBV")
 			moveAJ()
 		} else {
 			active = false
 			moveCent()
-			print(app.localizedName!, 1)
+			print("Changed to external")
 		}
 	}
 	

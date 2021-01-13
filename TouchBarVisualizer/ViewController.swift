@@ -176,7 +176,6 @@ extension ViewController: NSTouchBarDelegate {
 	}
 	
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-		
 		let item = NSCustomTouchBarItem(identifier: itemID)
 		colorSKView = ColorView()
 		item.view = colorSKView
@@ -187,7 +186,8 @@ extension ViewController: NSTouchBarDelegate {
 	}
 
 	func presentSystemModal(_ touchBar: NSTouchBar!, systemTrayItemIdentifier identifier: NSTouchBarItem.Identifier!) {
-		NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: identifier)	}
+		NSTouchBar.presentSystemModalTouchBar(touchBar, systemTrayItemIdentifier: identifier)
+	}
 
 	func presentSystemModal(_ touchBar: NSTouchBar!, placement: Int64, systemTrayItemIdentifier identifier: NSTouchBarItem.Identifier!) {
 		NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: identifier)
