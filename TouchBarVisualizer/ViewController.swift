@@ -49,10 +49,10 @@ class ViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
+		
 		createAudioDevice()
 		setup()
-		
-		NotificationCenter.defaultCenter.subscribe(self, eventType: AudioHardwareEvent.self, dispatchQueue: DispatchQueue.main)
 		
 		Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
 			if self.progressCircle.doubleValue == self.progressCircle.maxValue {
@@ -66,11 +66,23 @@ class ViewController: NSViewController {
 	}
 	
 	deinit {
-		NotificationCenter.defaultCenter.unsubscribe(self, eventType: AudioHardwareEvent.self)
+		deleteListener(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 	}
 	
 	override func viewDidAppear() {
 		backGroundShow()
+	// REF: https://stackoverflow.com/questions/43848002/audioobjectaddpropertylistenerblock-not-called-in-swift-3, https://stackoverflow.com/questions/26070058/how-to-get-notification-if-system-preferences-default-sound-changed
+	func addListenerBlock( listenerBlock: @escaping AudioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID, forPropertyAddress: AudioObjectPropertyAddress) {
+		var forPropertyAddress = forPropertyAddress
+
+		let status = AudioObjectAddPropertyListenerBlock(onAudioObjectID, &forPropertyAddress, nil, listenerBlock)
+		print(status)
+	}
+	
+	func deleteListener( listenerBlock: @escaping AudioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID, forPropertyAddress: AudioObjectPropertyAddress) {
+		var forPropertyAddress = forPropertyAddress
+		
+		AudioObjectRemovePropertyListenerBlock(onAudioObjectID, &forPropertyAddress, nil, listenerBlock)
 	}
 	
 	func updatePresence() {
@@ -93,6 +105,37 @@ class ViewController: NSViewController {
 		item.view = NSButton(image: nmg, target: self, action: #selector(showTouchBar))
 		NSTouchBarItem.addSystemTrayItem(item)
 		updatePresence()
+	}
+
+	func setup(){
+		audioEngine = AVAudioEngine()
+		
+		// Check For Device
+		let format = audioEngine.inputNode.outputFormat(forBus: 0)
+
+		print(format)
+		vol.sampleRate = audioEngine.inputNode.outputFormat(forBus: 0).sampleRate
+		
+		// Install Tap and Start Audio Processing // Try Larger Buffer Size to test affects
+		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
+			let levels = self.vol.analyze(buffer: buffer)
+			for i in 0...99 {
+				// Displaying
+				self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
+			} // Removed throttling code may impact performance
+			print(levels.1)
+			DispatchQueue.main.async {
+				self.levelDisplay.doubleValue = Double(levels.1)
+			}
+		}
+		
+		// Starting Audio Engine
+		audioEngine.prepare()
+		do {
+			try audioEngine.start()
+		} catch {
+			print(error)
+		}
 	}
 	
 	func createAudioDevice() {
@@ -145,38 +188,35 @@ class ViewController: NSViewController {
 		AudioDevice.lookup(by: ret.1)?.setAsDefaultOutputDevice()
 		blackHole.setAsDefaultInputDevice()
 	}
+	
+	func stop(){ // End tapping of audio engine
+		audioEngine.inputNode.removeTap(onBus: 0)
+		audioEngine.stop()
+	}
+	
+	func audioObjectPropertyListenerBlock (numberAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>) {
 
-	func setup(){
-		audioEngine = AVAudioEngine()
-		
-		// Check For Device
-		let format = audioEngine.inputNode.outputFormat(forBus: 0)
-		guard format.channelCount == 2 else {
-			fatalError("Expected two channels")
-		}
+		var index: UInt32 = 0
+		while index < numberAddresses {
+			let address: AudioObjectPropertyAddress = addresses[Int(index)]
+			switch address.mSelector {
+			case kAudioHardwarePropertyDefaultOutputDevice:
 
-		print(format)
-		vol.sampleRate = audioEngine.inputNode.outputFormat(forBus: 0).sampleRate
-		
-		// Install Tap and Start Audio Processing // Try Larger Buffer Size to test affects
-		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
-			let levels = self.vol.analyze(buffer: buffer)
-			for i in 0...99 {
-				// Displaying
-				self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
-			} // Removed throttling code may impact performance
-			print(levels.1)
-			DispatchQueue.main.async {
-				self.levelDisplay.doubleValue = Double(levels.1)
+				let device = AudioDevice.defaultOutputDevice()
+				print("kAudioHardwarePropertyDefaultOutputDevice: \(device)")
+				if device?.uid != "TBV Aggregate Device UID" && useBlackHole {
+					// Tear down previous init and rebuild audio device with new source
+					
+					stop()
+					createAudioDevice()
+					setup()
+				}
+			default:
+
+				print("We didn't expect this!")
+
 			}
-		}
-		
-		// Starting Audio Engine
-		audioEngine.prepare()
-		do {
-			try audioEngine.start()
-		} catch {
-			print(error)
+			index += 1
 		}
 	}
 
@@ -246,19 +286,32 @@ extension ViewController: NSTouchBarDelegate {
 	}
 }
 
-extension ViewController: EventSubscriber {
+extension ViewController: EventSubscriber { // bug in AMCoreAudio or something so code here is dead
 	func eventReceiver(_ event: Event) {
 		switch event {
 		case let event as AudioHardwareEvent:
 			switch event {
 			case let .defaultOutputDeviceChanged(audioDevice):
+			// Recreate the audio engine with the new mapping to maintain sourcing and optionally reconfigure aggregate device
 				print("Default output device changed to \(audioDevice)")
 				if audioDevice.uid != "TBV Aggregate Device UID" && useBlackHole {
 					// Tear down previous init and rebuild audio device with new source
+					
 					stop()
 					createAudioDevice()
 					setup()
 				}
+				if !useBlackHole {
+					stop()
+					setup()
+				}
+			case let .defaultInputDeviceChanged(audioDevice: audioDevice):
+				print("Default input device changed to \(audioDevice)")
+				if !useBlackHole && audioDevice.uid != prevInp {
+					stop()
+					setup()
+				}
+				prevInp = audioDevice.uid // is this even necessary?
 			default:
 				break
 			}
