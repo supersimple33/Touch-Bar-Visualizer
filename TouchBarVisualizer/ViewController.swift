@@ -180,6 +180,29 @@ class ViewController: NSViewController {
 		audioEngine.inputNode.removeTap(onBus: 0)
 		audioEngine.stop()
 	}
+	
+	// refreced from: https://stackoverflow.com/questions/35469569/how-can-i-programmatically-create-a-multi-output-device-in-os-x
+	func createMultiOutputAudioDevice(masterDeviceUID: CFString, secondDeviceUID: CFString, multiOutUID: String) -> (OSStatus, AudioDeviceID) {
+		let desc: [String : Any] = [
+			kAudioAggregateDeviceNameKey: "TBV Output",
+			kAudioAggregateDeviceUIDKey: multiOutUID,
+			kAudioAggregateDeviceSubDeviceListKey: [[kAudioSubDeviceUIDKey: masterDeviceUID], [kAudioSubDeviceUIDKey: secondDeviceUID]],
+			kAudioAggregateDeviceMasterSubDeviceKey: masterDeviceUID,
+			kAudioAggregateDeviceIsStackedKey: 1,
+			]
+
+		var aggregateDevice: AudioDeviceID = 0
+		return (AudioHardwareCreateAggregateDevice(desc as CFDictionary, &aggregateDevice), aggregateDevice)
+	}
+	
+	func deleteMultiOutputAudioDevice() -> OSStatus {
+		if aggregateDeviceID != nil {
+			return AudioHardwareDestroyAggregateDevice(aggregateDeviceID!)
+		} else {
+			return OSStatus(12.0)
+		}
+		
+	}
 
 }
 
