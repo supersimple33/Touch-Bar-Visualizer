@@ -13,7 +13,6 @@
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* Volume.swift */; };
 		FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */; };
-		FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4B8576231F3A65008B130C /* NewAudioDevice.m */; };
 		FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* TextScene.swift */; };
 		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
 		FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C42260F99100D23B25 /* AppDelegate.swift */; };
@@ -62,8 +61,6 @@
 		FE4B470C25A0BCC8006B7A72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTests.swift; sourceTree = "<group>"; };
 		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
-		FE4B8575231F3A65008B130C /* NewAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAudioDevice.h; sourceTree = "<group>"; };
-		FE4B8576231F3A65008B130C /* NewAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAudioDevice.m; sourceTree = "<group>"; };
 		FEBA3EBB247DAEB200F93677 /* TextScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScene.swift; sourceTree = "<group>"; };
 		FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBarVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,8 +150,6 @@
 				FED2D1CD2260F99200D23B25 /* Info.plist */,
 				FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */,
 				FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */,
-				FE4B8575231F3A65008B130C /* NewAudioDevice.h */,
-				FE4B8576231F3A65008B130C /* NewAudioDevice.m */,
 				FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */,
 			);
 			path = TouchBarVisualizer;
@@ -379,7 +374,6 @@
 				FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */,
 				FEF6943622A9A89C00DDD0F3 /* ColorView.swift in Sources */,
 				FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */,
-				FE4B8577231F3A65008B130C /* NewAudioDevice.m in Sources */,
 				FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

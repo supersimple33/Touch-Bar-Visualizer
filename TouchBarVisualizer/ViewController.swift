@@ -22,7 +22,6 @@ class ViewController: NSViewController {
 	var throwAway = 0
 	
 	var colorSKView = ColorView()
-	let newAuds : NewAudioDevice = NewAudioDevice()
 	
 	var useBlackHole = true
 	var manipulatingDevices = false
@@ -44,7 +43,7 @@ class ViewController: NSViewController {
 			setup()
 		} else {
 			stop()
-			newAuds.destroyAggDevice()
+			print(deleteMultiOutputAudioDevice())
 		}
 	}
 	
@@ -97,30 +96,29 @@ class ViewController: NSViewController {
 	}
 	
 	func createAudioDevice() {
-		
 		// Find all audio devices and verify their existence
 		guard var systemDefault = AudioDevice.defaultOutputDevice() else {
-			fatalError("There was no default system audio device detected")
+			fatalError("There was no default system audio device detected, this is weird")
 		}
 		guard let blackHole = AudioDevice.lookup(by: "BlackHole2ch_UID") else {
-			fatalError("BlackHole not installed: install blackhole or manipulate source code for other inputs") // add better error handling
+			fatalError("BlackHole not installed: install blackhole or uncheck use blackhole") // better error handling
 		}
 		
 		// Deconstruct the Previous Agg Dev If It Existed
-		if let aggDev = AudioDevice.lookup(by: "TBV Aggregate Device") {
-			newAuds.setAggDeviceID(aggDev.id)
+		if let aggDev = AudioDevice.lookup(by: "TBV Aggregate Device UID") {
+			aggregateDeviceID = aggDev.id
 			if systemDefault.id == aggDev.id {
 				for devID in aggDev.ownedObjectIDs()! {
 					// Look for the underlying output attached to the Agg Device
 					let dev = AudioDevice.lookup(by: devID)!
 					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
-						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers
+//						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers
 						break
 					}
 				}
 			}
-			newAuds.destroyAggDevice()
+			print(deleteMultiOutputAudioDevice())
 		}
 		
 		// Set BlackHole Volume to Max
@@ -139,7 +137,13 @@ class ViewController: NSViewController {
 		let devices=[[kAudioSubDeviceUIDKey as CFString:systemDefault.uid! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
 		
 		// Create the Agg Dev
-		newAuds.newAggDevice(devices, blackHole.id)
+		let ret = createMultiOutputAudioDevice(masterDeviceUID: systemDefault.uid! as CFString, secondDeviceUID: blackHole.uid! as CFString, multiOutUID: "TBV Aggregate Device UID")
+		print(ret.0)
+		
+		// Set As Default
+		aggregateDeviceID = ret.1
+		AudioDevice.lookup(by: ret.1)?.setAsDefaultOutputDevice()
+		blackHole.setAsDefaultInputDevice()
 	}
 
 	func setup(){
@@ -195,9 +199,11 @@ class ViewController: NSViewController {
 		return (AudioHardwareCreateAggregateDevice(desc as CFDictionary, &aggregateDevice), aggregateDevice)
 	}
 	
-	func deleteMultiOutputAudioDevice() -> OSStatus {
+	func deleteMultiOutputAudioDevice() -> OSStatus { //AudioDeviceIOProc
 		if aggregateDeviceID != nil {
-			return AudioHardwareDestroyAggregateDevice(aggregateDeviceID!)
+			let ret = AudioHardwareDestroyAggregateDevice(aggregateDeviceID!)
+			print(AudioHardwareUnload())
+			return ret
 		} else {
 			return OSStatus(12.0)
 		}
@@ -247,7 +253,7 @@ extension ViewController: EventSubscriber {
 			switch event {
 			case let .defaultOutputDeviceChanged(audioDevice):
 				print("Default output device changed to \(audioDevice)")
-				if audioDevice.uid! != "TBV Aggregate Device" {
+				if audioDevice.uid != "TBV Aggregate Device UID" && useBlackHole {
 					// Tear down previous init and rebuild audio device with new source
 					stop()
 					createAudioDevice()
