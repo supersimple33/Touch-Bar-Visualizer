@@ -56,8 +56,10 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		
 		// Register for audio changes
+		// swiftlint:disable line_length
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultInputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
+		// swiftlint:enable line_length
 		
 		createAudioDevice()
 		
@@ -76,6 +78,7 @@ class ViewController: NSViewController {
 		backGroundShow()
 	}
 	
+	// swiftlint:disable line_length
 	deinit {
 		deleteListener(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 	}
@@ -89,6 +92,7 @@ class ViewController: NSViewController {
 		let status = AudioObjectAddPropertyListenerBlock(onAudioObjectID, &forPropertyAddress, nil, listenerBlock)
 		print(status)
 	}
+	// swiftlint:enable line_length
 	
 	func deleteListener( listenerBlock: @escaping AudioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID, forPropertyAddress: AudioObjectPropertyAddress) {
 		var forPropertyAddress = forPropertyAddress

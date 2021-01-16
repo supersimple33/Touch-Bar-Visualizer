@@ -128,6 +128,8 @@ public class Volume {
 					continue
 				}
 				var peak = logA(x: peaks[i], ofBase: s)
+				peak = peak.isNaN ? 0.0 : peak
+				peak = peak.isInfinite ? 0.0 : peak
 				if peak < 0.0 {
 					peak = 0.0
 				}
