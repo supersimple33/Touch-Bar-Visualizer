@@ -9,16 +9,21 @@ The Touch Bar Visualizer is a cosmetic program used to display the sound output 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for general use.
 ### Prerequisites
-In order to listen to system sound Touch Bar Visualizer requires BlackHole to be installed. BlackHole can be found [here](https://github.com/ExistentialAudio/BlackHole). Follow the instructions from BlackHole in order to download and run the installer and create a new audio device channel. 
-- BlackHole may also be installed view homebrew: `brew install blackhole-2ch`
+In order to listen to system sound Touch Bar Visualizer requires BlackHole to be installed (however TBV will work just fine without blackhole and integrate the microphone and other audio inputs). BlackHole can be found [here](https://github.com/ExistentialAudio/BlackHole). Follow the instructions from BlackHole in order to download and run the installer and create a new audio device channel. 
+- BlackHole may also be installed via homebrew by running the following command in terminal: 
+- `brew install blackhole-2ch`
 ### Installation
-Once BackHole has been installed you may either download the source of this project or download the latest [release](https://github.com/supersimple33/Touch-Bar-Visualizer/releases).
+Once BackHole has been installed (or not) you may either download the source of this project or download the latest [release](https://github.com/supersimple33/Touch-Bar-Visualizer/releases).
 ### Usage
-Upon opening the app a new aggregate device will be created between soundflower and the currently selected output speakers. The volume levels for this device are then leveled using rnine's [AMCoreAudio](https://github.com/rnine/AMCoreAudio). Next the audio inputs will be analyzed and a vissualization will be sent to the touch bar. When closing the app the aggregate device will be closed and the input returned to normal. 
+Upon opening the app a new aggregate device will be created between soundflower and the currently selected output speakers. The volume levels for this device are then leveled using rnine's [AMCoreAudio](https://github.com/rnine/AMCoreAudio). Next the audio inputs will be analyzed and a visualization will be sent to the touch bar. When closing the app the aggregate device will be closed and the input returned to normal.
+### Microphone & Other Audio Inputs
+If you don't need or don't want to install blackhole you may press the `use without blackhole` button to capture audio from the default input audio device. This process also works if you have blackhole installed and unchecking and checking this option will switch between the two modes. This mode allows for easier interfacing with other programs that also monitor system sound or allows you to vissualize the sound in your current enviroment. 
 ### Background Usage
 The app will continue to run in the background and can be found on the control strip along with volume and brightness settings. 
 
 ## ToDo
-- Add a different view for the Vissualizer
-- Create a new menu for selecting different audio inputs other than soundflower.
+- Add a different view for the Vissualizer (this is probably next and if you have any ideas create a PR or leave a comment
+- ~~Create a new menu for selecting different audio inputs other than soundflower.~~
+## Community
+- If you find a bug or would like to request a feature/leave feedback please open an issue
 - Feel free to contribute any help is welcome!!!
