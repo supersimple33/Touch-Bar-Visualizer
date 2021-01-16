@@ -56,7 +56,6 @@ class ViewController: NSViewController {
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 		
 		createAudioDevice()
-		setup()
 		
 		Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { (tm) in
 			if self.progressCircle.doubleValue == self.progressCircle.maxValue {
@@ -156,7 +155,7 @@ class ViewController: NSViewController {
 			fatalError("There was no default system audio device detected, this is weird")
 		}
 		guard let blackHole = AudioDevice.lookup(by: "BlackHole2ch_UID") else {
-			fatalError("BlackHole not installed: install blackhole or uncheck use blackhole") // better error handling
+			return
 		}
 		
 		// Deconstruct the Previous Agg Dev If It Existed
@@ -213,14 +212,23 @@ class ViewController: NSViewController {
 			let address: AudioObjectPropertyAddress = addresses[Int(index)]
 			switch address.mSelector {
 			case kAudioHardwarePropertyDefaultOutputDevice:
-
 				let device = AudioDevice.defaultOutputDevice()
 				print("kAudioHardwarePropertyDefaultOutputDevice: \(device)")
+				
+				// Tear down previous init and rebuild audio device with new source
 				if device?.uid != "TBV Aggregate Device UID" && useBlackHole {
-					// Tear down previous init and rebuild audio device with new source
+					// check if the user is switching to the outer device and if so do not correct
+					for devID in AudioDevice.lookup(by: "TBV Aggregate Device UID")!.ownedObjectIDs()! {
+						let dev = AudioDevice.lookup(by: devID)!
+						if dev.uid == device?.uid {
+							return
+						}
+					}
 					
 					stop()
 					createAudioDevice()
+				// If we switched to the agg device update the input by calling setup
+				} else if useBlackHole {
 					setup()
 				}
 			default:
