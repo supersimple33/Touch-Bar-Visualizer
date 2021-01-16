@@ -18,7 +18,7 @@ public class Volume {
 	let col : ColorView = ColorView()
 	
 	public func analyze(buffer: AVAudioPCMBuffer) -> ([Int], Int) {
-		// refrenced from stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
+		// REF: https://stackoverflow.com/questions/3398753/using-the-apple-fft-and-accelerate-framework
 		
 		// Set Buffers
 		let bufferSize = buffer.frameLength

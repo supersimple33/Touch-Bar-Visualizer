@@ -30,6 +30,8 @@ class ViewController: NSViewController {
 	var prevInp: String?
 	var aggregateDeviceID: AudioDeviceID?
 	
+	// MARK: UI
+	
 	@IBOutlet var progressCircle: NSProgressIndicator!
 	@IBOutlet var progressCircle2: NSProgressIndicator!
 	
@@ -46,6 +48,8 @@ class ViewController: NSViewController {
 			print(deleteMultiOutputAudioDevice())
 		}
 	}
+	
+	// MARK: Loading/Unloading
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,12 +69,16 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	override func viewDidAppear() {
+		backGroundShow()
+	}
+	
 	deinit {
 		deleteListener(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 	}
 	
-	override func viewDidAppear() {
-		backGroundShow()
+	// MARK: Notification Subscribers
+	
 	// REF: https://stackoverflow.com/questions/43848002/audioobjectaddpropertylistenerblock-not-called-in-swift-3, https://stackoverflow.com/questions/26070058/how-to-get-notification-if-system-preferences-default-sound-changed
 	func addListenerBlock( listenerBlock: @escaping AudioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID, forPropertyAddress: AudioObjectPropertyAddress) {
 		var forPropertyAddress = forPropertyAddress
@@ -84,6 +92,8 @@ class ViewController: NSViewController {
 		
 		AudioObjectRemovePropertyListenerBlock(onAudioObjectID, &forPropertyAddress, nil, listenerBlock)
 	}
+	
+	// MARK: Touch Bar
 	
 	func updatePresence() {
 		DFRElementSetControlStripPresenceForIdentifier(itemID, true)
@@ -138,6 +148,8 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	// MARK: Audio Managment
+
 	func createAudioDevice() {
 		// Find all audio devices and verify their existence
 		guard var systemDefault = AudioDevice.defaultOutputDevice() else {
@@ -212,20 +224,17 @@ class ViewController: NSViewController {
 					setup()
 				}
 			default:
-
 				print("We didn't expect this!")
-
 			}
 			index += 1
 		}
 	}
 
-	func stop(){ // End tapping of audio engine
-		audioEngine.inputNode.removeTap(onBus: 0)
-		audioEngine.stop()
-	}
-	
-	// refreced from: https://stackoverflow.com/questions/35469569/how-can-i-programmatically-create-a-multi-output-device-in-os-x
+}
+
+// MARK: Aggregate Device Creation Extension
+extension ViewController {
+	// REF: https://stackoverflow.com/questions/35469569/how-can-i-programmatically-create-a-multi-output-device-in-os-x
 	func createMultiOutputAudioDevice(masterDeviceUID: CFString, secondDeviceUID: CFString, multiOutUID: String) -> (OSStatus, AudioDeviceID) {
 		let desc: [String : Any] = [
 			kAudioAggregateDeviceNameKey: "TBV Output",
@@ -249,9 +258,9 @@ class ViewController: NSViewController {
 		}
 		
 	}
-
 }
 
+// MARK: Touch Bar Responder
 @available(OSX 10.12.2, *)
 extension ViewController: NSTouchBarDelegate {
 	override func makeTouchBar() -> NSTouchBar? {
@@ -286,6 +295,7 @@ extension ViewController: NSTouchBarDelegate {
 	}
 }
 
+// MARK: CoreAudio Notification Responder
 extension ViewController: EventSubscriber { // bug in AMCoreAudio or something so code here is dead
 	func eventReceiver(_ event: Event) {
 		switch event {
