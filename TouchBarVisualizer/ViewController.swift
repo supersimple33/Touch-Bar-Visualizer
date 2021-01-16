@@ -46,6 +46,7 @@ class ViewController: NSViewController {
 		} else {
 			stop()
 			print(deleteMultiOutputAudioDevice())
+			setup()
 		}
 	}
 	
@@ -53,7 +54,10 @@ class ViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Register for audio changes
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
+		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultInputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 		
 		createAudioDevice()
 		
@@ -167,7 +171,7 @@ class ViewController: NSViewController {
 					let dev = AudioDevice.lookup(by: devID)!
 					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
-//						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers
+//						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers?
 						break
 					}
 				}
@@ -187,9 +191,6 @@ class ViewController: NSViewController {
 		blackHole.setNominalSampleRate(48000)
 		systemDefault.setNominalSampleRate(48000)
 		
-		// Create A List of Devices for the Agg Dev
-		let devices=[[kAudioSubDeviceUIDKey as CFString:systemDefault.uid! as CFString] as CFDictionary, [kAudioSubDeviceUIDKey as CFString: blackHole.uid! as CFString] as CFDictionary] as CFArray
-		
 		// Create the Agg Dev
 		let ret = createMultiOutputAudioDevice(masterDeviceUID: systemDefault.uid! as CFString, secondDeviceUID: blackHole.uid! as CFString, multiOutUID: "TBV Aggregate Device UID")
 		print(ret.0)
@@ -206,7 +207,6 @@ class ViewController: NSViewController {
 	}
 	
 	func audioObjectPropertyListenerBlock (numberAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>) {
-
 		var index: UInt32 = 0
 		while index < numberAddresses {
 			let address: AudioObjectPropertyAddress = addresses[Int(index)]
@@ -230,7 +230,15 @@ class ViewController: NSViewController {
 				// If we switched to the agg device update the input by calling setup
 				} else if useBlackHole {
 					setup()
+				// If the output was switched and no black hole simply update the audio engine
+				} else {
+					stop()
+					setup()
 				}
+			case kAudioHardwarePropertyDefaultInputDevice:
+				// If the system input changes reload the audio engine
+				stop()
+				setup()
 			default:
 				print("We didn't expect this!")
 			}
@@ -262,7 +270,7 @@ extension ViewController {
 			print(AudioHardwareUnload())
 			return ret
 		} else {
-			return OSStatus(12.0)
+			return OSStatus(-12.0)
 		}
 		
 	}
