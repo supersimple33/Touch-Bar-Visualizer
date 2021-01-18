@@ -274,9 +274,13 @@ extension ViewController {
 			print(AudioHardwareUnload())
 			return ret
 		} else {
-			return OSStatus(-12.0)
+			return OSStatus(-13.0)
 		}
-		
+	}
+	
+	func updateMultiOutputAudioDeviceID() -> Bool {
+		aggregateDeviceID = AudioDevice.lookup(by: "TBV Aggregate Device UID")?.id
+		return aggregateDeviceID != nil
 	}
 }
 
