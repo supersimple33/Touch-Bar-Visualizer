@@ -222,7 +222,7 @@ class ViewController: NSViewController {
 				// Tear down previous init and rebuild audio device with new source
 				if device?.uid != "TBV Aggregate Device UID" && useBlackHole {
 					// check if the user is switching to the outer device and if so do not correct
-					for devID in AudioDevice.lookup(by: "TBV Aggregate Device UID")!.ownedObjectIDs()! {
+					for devID in AudioDevice.lookup(by: "TBV Aggregate Device UID")?.ownedObjectIDs() ?? [] { // If no device is found don't run loop
 						let dev = AudioDevice.lookup(by: devID)!
 						if dev.uid == device?.uid {
 							return
