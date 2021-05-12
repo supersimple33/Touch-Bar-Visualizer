@@ -8,6 +8,7 @@
 
 import Cocoa
 import SpriteKit
+import CoreGraphics
 
 class ColorScene: SKScene {
 
@@ -31,52 +32,34 @@ class ColorScene: SKScene {
 		}
 		
 		if !created {
-			for i in 0...99 {
-				var popul : [SKSpriteNode] = []
-				for c in 0...10 { // 10,9 / 8,7
-					var color : NSColor!
-					if c < 5 {
-						color = .green
-					} else if c < 8 {
-						color = .orange
-					} else {
-						color = .red
-					}
-					let x : CGFloat = (wid * CGFloat(i + 1)) // 110 aprox escape key distance
-					let texture = SKTexture(imageNamed: "square")
-					
-					let rect = SKSpriteNode(texture: texture, color: color, size: CGSize(width: wid, height: 3))
-					rect.colorBlendFactor = 1.0
-					self.addChild(rect)
-					rect.position = CGPoint(x: x, y: (rect.size.height * CGFloat(c - 1)) + (rect.size.height / 2))
-					
-					popul.append(rect)
-				}
-				allNodes.append(popul)
-			}
-			
 			NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
 			created = true
 			moveCent() //Correct call point?
 		}
 	}
 	
-	
-	func levelFor(group: Int, level: Int) {
-		guard allNodes.count == 100 else { return }
+	func levelForAll(levels: [Int]) {
+		self.removeAllChildren()
 		
-		for i in 0...level { // Reveal all needed nodes
-			if i > 10 {
-				continue
-			}
-			allNodes[group][i].isHidden = false
+		// Convert levels to CGPoints
+		let points = levels.enumerated().map { (index, level) in
+			return CGPoint(x: wid * (CGFloat(index) - 1.0), y: 3.0 * (CGFloat(level) - 1.0))
 		}
+		let path = CGMutablePath()
+		path.move(to: points[0])
 		
-		if level < 10 {
-			for i in (level + 1)...10 { // Hide all nodes below peak volume
-				allNodes[group][i].isHidden = true
-			}
+		// Placing control points
+		let leftPush = CGAffineTransform(translationX: wid / 3, y: 0.0)
+		let rightPull = CGAffineTransform(translationX: wid / -3, y: 0.0)
+		
+		for i in 1..<points.count {
+			let p1 = points[i - 1].applying(leftPush)
+			let p2 = points[i].applying(rightPull)
+			path.addCurve(to: points[i], control1: p1, control2: p2)
 		}
+		let spriteLine = SKShapeNode(path: path)
+		spriteLine.strokeColor = .blue
+		addChild(spriteLine)
 	}
 	
 	@objc func appChange(_ notification: NSNotification) {
@@ -96,20 +79,20 @@ class ColorScene: SKScene {
 	}
 	
 	func moveCent() {
-		for i in 0...99 {
-			for j in 0...10 {
-				let x : CGFloat = (wid * CGFloat(i + 1))
-				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
-			}
-		}
+//		for i in 0...99 {
+//			for j in 0...10 {
+//				let x : CGFloat = (wid * CGFloat(i + 1))
+//				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
+//			}
+//		}
 	}
 	
 	func moveAJ() {
-		for i in 0...99 {
-			for j in 0...10 {
-				let x : CGFloat = (wid * CGFloat(i + 1)) + 105
-				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
-			}
-		}
+//		for i in 0...99 {
+//			for j in 0...10 {
+//				let x : CGFloat = (wid * CGFloat(i + 1)) + 105
+//				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
+//			}
+//		}
 	}
 }

@@ -136,10 +136,9 @@ class ViewController: NSViewController {
 		// Install Tap and Start Audio Processing // Try Larger Buffer Size to test affects
 		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
 			let levels = self.vol.analyze(buffer: buffer)
-			for i in 0...99 {
-				// Displaying
-				self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
-			} // Removed throttling code may impact performance
+			
+			self.colorSKView.colScene.levelForAll(levels: levels.0.reversed())
+			
 			print(levels.1)
 			DispatchQueue.main.async {
 				self.levelDisplay.doubleValue = Double(levels.1)

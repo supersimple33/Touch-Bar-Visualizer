@@ -28,7 +28,7 @@ public class Volume {
 		
 		let maxBufFloatL = Int(bufferSize / 2) * MemoryLayout<Float>.size
 		
-		// Set Comnplex
+		// Set Complex
 		var realp = (malloc(maxBufFloatL)?.assumingMemoryBound(to: Float.self))!
 		var imagp = (malloc(maxBufFloatL)?.assumingMemoryBound(to: Float.self))!
 		var complex = DSPSplitComplex(realp: realp, imagp: imagp)
