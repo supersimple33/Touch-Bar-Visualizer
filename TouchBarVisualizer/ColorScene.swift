@@ -15,12 +15,14 @@ class ColorScene: SKScene {
 	
 	var ready = false
 	let height : CGFloat = 30.0
-	let wid : CGFloat = 10.0 //10
+	let wid : CGFloat = 10.5 //10.5
 	
 	var allNodes : [[SKSpriteNode]] = []
 	
 	var active = true
 	var created = false
+	
+	var masterTransform = CGAffineTransform.identity
 	
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
@@ -57,24 +59,28 @@ class ColorScene: SKScene {
 		
 		// Convert levels to CGPoints
 		let points = levels.enumerated().map { (index, level) in
-			return CGPoint(x: wid * (CGFloat(index) - 1.0), y: 3.0 * (CGFloat(level) - 1.0))
+			return CGPoint(x: wid * (CGFloat(index)), y: max(3.0 * (CGFloat(level) - 1.0), 0.0))
 		}
 		let path = CGMutablePath()
-		path.move(to: points[0])
+		path.move(to: points[0].applying(masterTransform))
 		
 		// Placing control points and creating bezier curves
 		let leftPush = CGAffineTransform(translationX: wid / 3.0, y: 0.0) // Tweak x to change slope
 		let rightPull = CGAffineTransform(translationX: wid / -3.0, y: 0.0) // Tweak x to change slope
 		
 		for i in 1..<points.count {
-			let p1 = points[i - 1].applying(leftPush)
-			let p2 = points[i].applying(rightPull)
-			path.addCurve(to: points[i], control1: p1, control2: p2)
+			let p1 = points[i - 1].applying(masterTransform.concatenating(leftPush))
+			let p2 = points[i].applying(masterTransform.concatenating(rightPull))
+			path.addCurve(to: points[i].applying(masterTransform), control1: p1, control2: p2)
 		}
 		
-		// Enclose
+		// Enclose // fixed right edge bug by filling zeros but could also over sample instead
+		path.addLine(to: CGPoint(x: self.size.width + 1, y: points.last!.applying(masterTransform).y)) // transform not necessay
+		
 		path.addLine(to: CGPoint(x: self.size.width + 1, y: self.size.height + 1))
 		path.addLine(to: CGPoint(x: -1, y: self.size.height + 1))
+		path.addLine(to: CGPoint(x: -1, y: -1))
+		path.addLine(to: CGPoint(x: points[0].applying(masterTransform).x, y: -1))
 		path.closeSubpath()
 		
 		let spriteLine = SKShapeNode(path: path)
@@ -101,21 +107,11 @@ class ColorScene: SKScene {
 	}
 	
 	func moveCent() {
-//		for i in 0...99 {
-//			for j in 0...10 {
-//				let x : CGFloat = (wid * CGFloat(i + 1))
-//				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
-//			}
-//		}
+		masterTransform = CGAffineTransform(translationX: -105.0, y: 0.0) // pulling values too much
 	}
 	
 	func moveAJ() {
-//		for i in 0...99 {
-//			for j in 0...10 {
-//				let x : CGFloat = (wid * CGFloat(i + 1)) + 105
-//				allNodes[i][j].position = CGPoint(x: x, y: allNodes[i][j].position.y)
-//			}
-//		}
+		masterTransform = .identity
 	}
 	
 	// REFRENCE: stackoverflow.com/questions/63866624/why-is-cilineargradient-resulting-in-a-very-non-linear-gradient
