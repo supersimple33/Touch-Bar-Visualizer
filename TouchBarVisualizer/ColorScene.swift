@@ -24,6 +24,9 @@ class ColorScene: SKScene {
 	
 	var masterTransform = CGAffineTransform.identity
 	
+	var shapeLayer : CAShapeLayer!
+	var spriteLine : SKShapeNode!
+	
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
 		self.backgroundColor = .black
@@ -39,6 +42,7 @@ class ColorScene: SKScene {
 			moveCent() //Correct call point?
 		}
 		
+		// Creating Background Gradient
 		let layer = CAGradientLayer()
 		layer.frame = CGRect(origin: CGPoint.zero, size: self.size)
 		layer.colors = [SKColor.red.cgColor, SKColor.green.cgColor]
@@ -50,19 +54,37 @@ class ColorScene: SKScene {
 			sampleback2.position = CGPoint(x: 0, y: -5)
 			self.addChild(sampleback2)
 		}
+		
+		// Back layer for smooth transitions
+		shapeLayer = CAShapeLayer()
+		self.view!.layer!.addSublayer(shapeLayer)
+		
+		shapeLayer.fillColor = NSColor.clear.cgColor
 	}
 	
 	func levelForAll(levels: [Int]) {
-		if let child = childNode(withName: "spriteLine") {
-			child.removeFromParent()
+		guard self.view != nil else { // Are we showing the view?
+			return
+		}
+		
+		var oldPath : CGPath!
+		if let child = childNode(withName: "spriteLine") as? SKShapeNode {
+			oldPath = child.path
+		} else {
+			oldPath = CGPath(rect: CGRect(origin: CGPoint.zero, size: self.size), transform: nil)
+			spriteLine = SKShapeNode(path: oldPath)
+			spriteLine.strokeColor = .red //Extract for custom user selection
+			spriteLine.fillColor = .black
+			spriteLine.name = "spriteLine"
+			addChild(spriteLine)
 		}
 		
 		// Convert levels to CGPoints
 		let points = levels.enumerated().map { (index, level) in
 			return CGPoint(x: wid * (CGFloat(index)), y: max(3.0 * (CGFloat(level) - 1.0), 0.0))
 		}
-		let path = CGMutablePath()
-		path.move(to: points[0].applying(masterTransform))
+		let newPath = CGMutablePath()
+		newPath.move(to: points[0].applying(masterTransform))
 		
 		// Placing control points and creating bezier curves
 		let leftPush = CGAffineTransform(translationX: wid / 3.0, y: 0.0) // Tweak x to change slope
@@ -71,23 +93,32 @@ class ColorScene: SKScene {
 		for i in 1..<points.count {
 			let p1 = points[i - 1].applying(masterTransform.concatenating(leftPush))
 			let p2 = points[i].applying(masterTransform.concatenating(rightPull))
-			path.addCurve(to: points[i].applying(masterTransform), control1: p1, control2: p2)
+			newPath.addCurve(to: points[i].applying(masterTransform), control1: p1, control2: p2)
 		}
 		
 		// Enclose // fixed right edge bug by filling zeros but could also over sample instead
-		path.addLine(to: CGPoint(x: self.size.width + 1, y: points.last!.applying(masterTransform).y)) // transform not necessay
+		newPath.addLine(to: CGPoint(x: self.size.width + 1, y: points.last!.applying(masterTransform).y)) // transform not necessay
 		
-		path.addLine(to: CGPoint(x: self.size.width + 1, y: self.size.height + 1))
-		path.addLine(to: CGPoint(x: -1, y: self.size.height + 1))
-		path.addLine(to: CGPoint(x: -1, y: -1))
-		path.addLine(to: CGPoint(x: points[0].applying(masterTransform).x, y: -1))
-		path.closeSubpath()
+		newPath.addLine(to: CGPoint(x: self.size.width + 1, y: self.size.height + 1))
+		newPath.addLine(to: CGPoint(x: -1, y: self.size.height + 1))
+		newPath.addLine(to: CGPoint(x: -1, y: -1))
+		newPath.addLine(to: CGPoint(x: points[0].applying(masterTransform).x, y: -1))
+		newPath.closeSubpath()
+
+		shapeLayer.path = oldPath
 		
-		let spriteLine = SKShapeNode(path: path)
-		spriteLine.strokeColor = .red //Extract for custom user selection
-		spriteLine.fillColor = .black
-		spriteLine.name = "spriteLine"
-		addChild(spriteLine)
+		let anim = CABasicAnimation(keyPath: "path")
+		anim.duration = 1.0 / 30.0 // refresh rate, what is ideal?
+		anim.fromValue = oldPath
+		anim.toValue = newPath
+		anim.isRemovedOnCompletion = true //true?
+		
+		shapeLayer.add(anim, forKey:
+		"prepanimation")
+		spriteLine.run(SKAction.customAction(withDuration: anim.duration, actionBlock: { (node, timeDuration) in
+			(node as! SKShapeNode).path = self.shapeLayer.presentation()?.path
+			print(timeDuration)
+		}))
 	}
 	
 	@objc func appChange(_ notification: NSNotification) {

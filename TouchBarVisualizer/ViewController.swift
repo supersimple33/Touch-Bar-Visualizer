@@ -137,10 +137,9 @@ class ViewController: NSViewController {
 		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
 			let levels = self.vol.analyze(buffer: buffer)
 			
-			self.colorSKView.colScene.levelForAll(levels: levels.0.reversed())
-			
 			print(levels.1)
-			DispatchQueue.main.async {
+			DispatchQueue.main.async { // Async ok?
+				self.colorSKView.colScene.levelForAll(levels: levels.0.reversed()) // Main thread, should check opp difficulty
 				self.levelDisplay.doubleValue = Double(levels.1)
 			}
 		}
