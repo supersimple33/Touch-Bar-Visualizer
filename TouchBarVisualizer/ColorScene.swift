@@ -23,6 +23,7 @@ class ColorScene: SKScene {
 	var created = false
 	
 	var masterTransform = CGAffineTransform.identity
+	var drawColor = NSColor.red
 	
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
@@ -39,22 +40,30 @@ class ColorScene: SKScene {
 			moveCent() //Correct call point?
 		}
 		
-		let layer = CAGradientLayer()
-		layer.frame = CGRect(origin: CGPoint.zero, size: self.size)
-		layer.colors = [SKColor.red.cgColor, SKColor.green.cgColor]
-		
 		if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: NSColor(red: 255.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), width: self.size.width + 2, height: self.size.height * 2) {
 			let sampleback2 = SKShapeNode(path: CGPath(roundedRect: CGRect(x: -1, y: -1, width: self.size.width + 2, height: self.size.height * 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
 			sampleback2.fillColor = .white
 			sampleback2.fillTexture = SKTexture(cgImage: gradImage2)
 			sampleback2.position = CGPoint(x: 0, y: -5)
+			sampleback2.name = "gradientImage"
 			self.addChild(sampleback2)
 		}
 	}
+
+	func reCreateColor(customColor: NSColor) {
+		if let child = childNode(withName: "gradientImage") as? SKShapeNode {
+			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: customColor, width: self.size.width + 2, height: self.size.height * 2) {
+				child.fillTexture = SKTexture(cgImage: gradImage2)
+			}
+			drawColor = customColor // nested to fail equally
+		}
+	}
+	
+	// MARK: Vissualizing Music
 	
 	func levelForAll(levels: [Int]) {
 		if let child = childNode(withName: "spriteLine") {
-			child.removeFromParent()
+			child.removeFromParent() // may be better off simply changing path rather than recreating sprite, would save a lot of processing?
 		}
 		
 		// Convert levels to CGPoints
@@ -84,11 +93,13 @@ class ColorScene: SKScene {
 		path.closeSubpath()
 		
 		let spriteLine = SKShapeNode(path: path)
-		spriteLine.strokeColor = .red //Extract for custom user selection
+		spriteLine.strokeColor = drawColor //Extract for custom user selection
 		spriteLine.fillColor = .black
 		spriteLine.name = "spriteLine"
 		addChild(spriteLine)
 	}
+	
+	// MARK: Dealing With Movement
 	
 	@objc func appChange(_ notification: NSNotification) {
 		guard let app = notification.userInfo!["NSWorkspaceApplicationKey"] as? NSRunningApplication else {

@@ -32,6 +32,8 @@ class ViewController: NSViewController {
 	
 	// MARK: UI
 	
+	@IBOutlet var colorSelector: NSColorWell!
+	
 	@IBOutlet var progressCircle: NSProgressIndicator!
 	@IBOutlet var progressCircle2: NSProgressIndicator!
 	
@@ -48,6 +50,11 @@ class ViewController: NSViewController {
 			print(deleteMultiOutputAudioDevice())
 			setup()
 		}
+	}
+	
+	@IBAction func colorSelected(_ sender: Any) {
+		let color = (sender as! NSColorWell).color
+		self.colorSKView.colScene.reCreateColor(customColor: color)
 	}
 	
 	// MARK: Loading/Unloading
@@ -111,6 +118,7 @@ class ViewController: NSViewController {
 		updatePresence()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			self.colorSKView.presentColor()
+			self.colorSelector.isEnabled = true
 		}
 		//plug in show here
 	}

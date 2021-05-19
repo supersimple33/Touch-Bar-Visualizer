@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -733,7 +733,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSE-14-Iu3">
-                                <rect key="frame" x="165" y="76" width="149" height="18"/>
+                                <rect key="frame" x="134" y="76" width="149" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Don't Use Blackhole" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9LF-B7-7sH">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -743,9 +743,18 @@
                                     <action selector="soundSource:" target="XfG-lQ-9wD" id="XSc-ow-QYH"/>
                                 </connections>
                             </button>
+                            <colorWell fixedFrame="YES" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M7-xd-2eD">
+                                <rect key="frame" x="306" y="73" width="44" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorSelected:" target="XfG-lQ-9wD" id="5j3-6u-D5l"/>
+                                </connections>
+                            </colorWell>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="colorSelector" destination="6M7-xd-2eD" id="xcK-rd-BM0"/>
                         <outlet property="levelDisplay" destination="Sg8-3B-QeY" id="nvG-Fi-cTB"/>
                         <outlet property="progressCircle" destination="Jxn-CM-qCL" id="nAu-3G-F1h"/>
                         <outlet property="progressCircle2" destination="zgu-Sm-Ui6" id="DAQ-1H-Aqe"/>
