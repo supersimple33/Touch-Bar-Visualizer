@@ -23,16 +23,10 @@ class ColorScene: SKScene {
 	var created = false
 	
 	var masterTransform = CGAffineTransform.identity
-	var drawColor = NSColor.red
 	
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
 		self.backgroundColor = .black
-		
-		if !ready {
-			self.backgroundColor = .black
-			ready = true
-		}
 		
 		if !created {
 			NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
@@ -40,6 +34,15 @@ class ColorScene: SKScene {
 			moveCent() //Correct call point?
 		}
 		
+		// Creating Vissualizer Line
+		let spriteLine = SKShapeNode(circleOfRadius: 1.0)
+		spriteLine.strokeColor = .red
+		spriteLine.fillColor = .black
+		spriteLine.name = "spriteLine"
+		spriteLine.zPosition = 2
+		addChild(spriteLine)
+		
+		// Creating Gradient
 		if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: NSColor(red: 255.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), width: self.size.width + 2, height: self.size.height * 2) {
 			let sampleback2 = SKShapeNode(path: CGPath(roundedRect: CGRect(x: -1, y: -1, width: self.size.width + 2, height: self.size.height * 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
 			sampleback2.fillColor = .white
@@ -55,15 +58,16 @@ class ColorScene: SKScene {
 			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: customColor, width: self.size.width + 2, height: self.size.height * 2) {
 				child.fillTexture = SKTexture(cgImage: gradImage2)
 			}
-			drawColor = customColor // nested to fail equally
+			let spriteLine = childNode(withName: "spriteLine") as! SKShapeNode
+			spriteLine.strokeColor = customColor
 		}
 	}
 	
 	// MARK: Vissualizing Music
 	
 	func levelForAll(levels: [Int]) {
-		if let child = childNode(withName: "spriteLine") {
-			child.removeFromParent() // may be better off simply changing path rather than recreating sprite, would save a lot of processing?
+		guard let child = childNode(withName: "spriteLine") as? SKShapeNode else {
+			return
 		}
 		
 		// Convert levels to CGPoints
@@ -92,11 +96,8 @@ class ColorScene: SKScene {
 		path.addLine(to: CGPoint(x: points[0].applying(masterTransform).x, y: -1))
 		path.closeSubpath()
 		
-		let spriteLine = SKShapeNode(path: path)
-		spriteLine.strokeColor = drawColor //Extract for custom user selection
-		spriteLine.fillColor = .black
-		spriteLine.name = "spriteLine"
-		addChild(spriteLine)
+		// Set new path
+		child.path = path
 	}
 	
 	// MARK: Dealing With Movement
