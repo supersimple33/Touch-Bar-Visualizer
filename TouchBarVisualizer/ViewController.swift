@@ -30,6 +30,8 @@ class ViewController: NSViewController {
 	var prevInp: String?
 	var aggregateDeviceID: AudioDeviceID?
 	
+	var lastColorOperation : DispatchWorkItem?
+	
 	// MARK: UI
 	
 	@IBOutlet var colorSelector: NSColorWell!
@@ -54,7 +56,16 @@ class ViewController: NSViewController {
 	
 	@IBAction func colorSelected(_ sender: Any) {
 		let color = (sender as! NSColorWell).color
-		self.colorSKView.colScene.reCreateColor(customColor: color)
+		
+		// To prevent lag keep resetting what color the visualizer should be updated to
+		if lastColorOperation != nil {
+			lastColorOperation!.cancel()
+		}
+		let workItem = DispatchWorkItem {
+			self.colorSKView.colScene.reCreateColor(customColor: color)
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
+		lastColorOperation = workItem
 	}
 	
 	// MARK: Loading/Unloading
@@ -82,7 +93,17 @@ class ViewController: NSViewController {
 	}
 	
 	override func viewDidAppear() {
+		super.viewDidAppear()
+		
 		backGroundShow()
+	}
+	
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		
+		// Tear down color well before leaving
+		NSColorPanel.shared.orderOut(nil)
+		colorSelector.deactivate()
 	}
 	
 	// swiftlint:disable line_length
