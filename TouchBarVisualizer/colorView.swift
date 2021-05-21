@@ -11,14 +11,19 @@ import SpriteKit
 
 class ColorView: SKView {
 
-	let colScene = ColorScene(size: CGSize(width: 1005, height: 30))
+	let lineScene = ColorScene(size: CGSize(width: 1005, height: 30))
+	let boxScene = nil
 	let tScene = TextScene(size: CGSize(width: 1005, height: 30))
 	
-	func presentColor() {
-		self.presentScene(colScene)
+	func presentLine() {
+		self.presentScene(lineScene, transition: SKTransition.crossFade(withDuration: 1.0))
+	}
+	
+	func presentBoxes() {
+		self.presentScene(boxScene, transition: SKTransition.crossFade(withDuration: 1.0))
 	}
 	
 	func presentText() {
-		self.presentScene(tScene)
+		self.presentScene(tScene, transition: SKTransition.crossFade(withDuration: 1.0))
 	}
 }

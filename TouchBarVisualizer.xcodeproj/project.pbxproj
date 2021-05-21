@@ -13,13 +13,14 @@
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* Volume.swift */; };
 		FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */; };
+		FE6BCE7E26580E3E0082F4DC /* BoxesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BCE7D26580E3E0082F4DC /* BoxesScene.swift */; };
 		FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* TextScene.swift */; };
 		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
 		FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C42260F99100D23B25 /* AppDelegate.swift */; };
 		FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED2D1C62260F99100D23B25 /* ViewController.swift */; };
 		FED2D1CC2260F99200D23B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED2D1CA2260F99200D23B25 /* Main.storyboard */; };
 		FEF6943622A9A89C00DDD0F3 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943522A9A89C00DDD0F3 /* ColorView.swift */; };
-		FEF6943822A9AE9200DDD0F3 /* ColorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */; };
+		FEF6943822A9AE9200DDD0F3 /* LineScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943722A9AE9200DDD0F3 /* LineScene.swift */; };
 		FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6943922A9C02B00DDD0F3 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		FE4B470C25A0BCC8006B7A72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTests.swift; sourceTree = "<group>"; };
 		FE4B846D231DB48F008B130C /* TouchBarVisualizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TouchBarVisualizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		FE6BCE7D26580E3E0082F4DC /* BoxesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxesScene.swift; sourceTree = "<group>"; };
 		FEBA3EBB247DAEB200F93677 /* TextScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScene.swift; sourceTree = "<group>"; };
 		FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBarVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +72,7 @@
 		FED2D1CD2260F99200D23B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FED2D1CE2260F99200D23B25 /* TouchBarVisualizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchBarVisualizer.entitlements; sourceTree = "<group>"; };
 		FEF6943522A9A89C00DDD0F3 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
-		FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScene.swift; sourceTree = "<group>"; };
+		FEF6943722A9AE9200DDD0F3 /* LineScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineScene.swift; sourceTree = "<group>"; };
 		FEF6943922A9C02B00DDD0F3 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +145,8 @@
 				FEF6943922A9C02B00DDD0F3 /* WindowController.swift */,
 				FE2787BA22710F3600B8E4B4 /* Volume.swift */,
 				FEF6943522A9A89C00DDD0F3 /* ColorView.swift */,
-				FEF6943722A9AE9200DDD0F3 /* ColorScene.swift */,
+				FEF6943722A9AE9200DDD0F3 /* LineScene.swift */,
+				FE6BCE7D26580E3E0082F4DC /* BoxesScene.swift */,
 				FEBA3EBB247DAEB200F93677 /* TextScene.swift */,
 				FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */,
 				FED2D1CA2260F99200D23B25 /* Main.storyboard */,
@@ -368,8 +371,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEF6943822A9AE9200DDD0F3 /* ColorScene.swift in Sources */,
+				FEF6943822A9AE9200DDD0F3 /* LineScene.swift in Sources */,
 				FED2D1C72260F99100D23B25 /* ViewController.swift in Sources */,
+				FE6BCE7E26580E3E0082F4DC /* BoxesScene.swift in Sources */,
 				FEF6943A22A9C02B00DDD0F3 /* WindowController.swift in Sources */,
 				FED2D1C52260F99100D23B25 /* AppDelegate.swift in Sources */,
 				FEF6943622A9A89C00DDD0F3 /* ColorView.swift in Sources */,

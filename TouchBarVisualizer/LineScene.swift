@@ -1,5 +1,5 @@
 //
-//  ColorScene.swift
+//  LineScene.swift
 //  TouchBarVisualizer
 //
 //  Created by Addison Hanrattie on 6/6/19.
@@ -11,7 +11,7 @@ import SpriteKit
 import CoreGraphics
 import CoreImage
 
-class ColorScene: SKScene {
+class LineScene: SKScene {
 	
 	var ready = false
 	let height : CGFloat = 30.0
