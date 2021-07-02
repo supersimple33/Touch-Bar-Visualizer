@@ -3,16 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3C784F78657D4277BE12ECF /* Pods_TouchBarVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954B9F0CBE7859987020152F /* Pods_TouchBarVisualizerTests.framework */; };
-		B49739F92D8D0BFC243141D9 /* Pods_TouchBarVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865940A586EB9E2FA6EBB331 /* Pods_TouchBarVisualizer.framework */; };
 		FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; };
 		FE0F10EE24492540001F8976 /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE0F10EC24492540001F8976 /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE2787BB22710F3600B8E4B4 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2787BA22710F3600B8E4B4 /* Volume.swift */; };
 		FE4B471825A0BDC7006B7A72 /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B471725A0BDC7006B7A72 /* VolumeTests.swift */; };
+		FE67E9E9268F3DC50005A3EB /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = FE67E9E8268F3DC50005A3EB /* SimplyCoreAudio */; };
 		FE6BCE7E26580E3E0082F4DC /* BoxesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BCE7D26580E3E0082F4DC /* BoxesScene.swift */; };
 		FEBA3EBC247DAEB200F93677 /* TextScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBA3EBB247DAEB200F93677 /* TextScene.swift */; };
 		FEC6A8AA24D1F6EB0071AFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC6A8A924D1F6EB0071AFBD /* Assets.xcassets */; };
@@ -49,12 +48,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0BDEACCC35ACAE7092B1772F /* Pods-TouchBarVisualizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.debug.xcconfig"; sourceTree = "<group>"; };
-		5813AA6C5DE951F828CF4953 /* Pods-TouchBarVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
-		865940A586EB9E2FA6EBB331 /* Pods_TouchBarVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		954B9F0CBE7859987020152F /* Pods_TouchBarVisualizerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchBarVisualizerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD7FEF18D8F16FBD03975BCE /* Pods-TouchBarVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C5DD71BE528F86FD99CB699F /* Pods-TouchBarVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchBarVisualizer.release.xcconfig"; path = "Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer.release.xcconfig"; sourceTree = "<group>"; };
 		FE0F10EC24492540001F8976 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		FE0F10EF244925F6001F8976 /* TouchBarPrivateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivateApi.h; sourceTree = "<group>"; };
 		FE2787BA22710F3600B8E4B4 /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
@@ -81,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3C784F78657D4277BE12ECF /* Pods_TouchBarVisualizerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,25 +81,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE67E9E9268F3DC50005A3EB /* SimplyCoreAudio in Frameworks */,
 				FE0F10ED24492540001F8976 /* DFRFoundation.framework in Frameworks */,
-				B49739F92D8D0BFC243141D9 /* Pods_TouchBarVisualizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C6685BD50F0FED2B3F7A3BA7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0BDEACCC35ACAE7092B1772F /* Pods-TouchBarVisualizer.debug.xcconfig */,
-				C5DD71BE528F86FD99CB699F /* Pods-TouchBarVisualizer.release.xcconfig */,
-				AD7FEF18D8F16FBD03975BCE /* Pods-TouchBarVisualizerTests.debug.xcconfig */,
-				5813AA6C5DE951F828CF4953 /* Pods-TouchBarVisualizerTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FE4B470925A0BCC8006B7A72 /* TouchBarVisualizerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +105,6 @@
 				FE4B470925A0BCC8006B7A72 /* TouchBarVisualizerTests */,
 				FED2D1C22260F99100D23B25 /* Products */,
 				FEDD7EE4231876CE00B2CE8A /* Frameworks */,
-				C6685BD50F0FED2B3F7A3BA7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,8 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				FE0F10EC24492540001F8976 /* DFRFoundation.framework */,
-				865940A586EB9E2FA6EBB331 /* Pods_TouchBarVisualizer.framework */,
-				954B9F0CBE7859987020152F /* Pods_TouchBarVisualizerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,11 +153,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE4B470F25A0BCC8006B7A72 /* Build configuration list for PBXNativeTarget "TouchBarVisualizerTests" */;
 			buildPhases = (
-				5F8EDEBE01E23A966DC92DFA /* [CP] Check Pods Manifest.lock */,
 				FE4B470425A0BCC8006B7A72 /* Sources */,
 				FE4B470525A0BCC8006B7A72 /* Frameworks */,
 				FE4B470625A0BCC8006B7A72 /* Resources */,
-				6FE4F4FA4DD178F17EBA2BB5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,18 +171,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FED2D1D12260F99200D23B25 /* Build configuration list for PBXNativeTarget "TouchBarVisualizer" */;
 			buildPhases = (
-				B48236DCB15A79087AF89DEC /* [CP] Check Pods Manifest.lock */,
 				FED2D1BD2260F99100D23B25 /* Sources */,
 				FED2D1BE2260F99100D23B25 /* Frameworks */,
 				FED2D1BF2260F99100D23B25 /* Resources */,
 				FE4B847C231DF455008B130C /* Embed Frameworks */,
-				1D46B446D44E13EE46B2C12B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TouchBarVisualizer;
+			packageProductDependencies = (
+				FE67E9E8268F3DC50005A3EB /* SimplyCoreAudio */,
+			);
 			productName = TouchBarVisualizer;
 			productReference = FED2D1C12260F99100D23B25 /* TouchBarVisualizer.app */;
 			productType = "com.apple.product-type.application";
@@ -248,6 +225,9 @@
 				Base,
 			);
 			mainGroup = FED2D1B82260F99100D23B25;
+			packageReferences = (
+				FE67E9E7268F3DC50005A3EB /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */,
+			);
 			productRefGroup = FED2D1C22260F99100D23B25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,87 +256,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1D46B446D44E13EE46B2C12B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizer/Pods-TouchBarVisualizer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F8EDEBE01E23A966DC92DFA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TouchBarVisualizerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6FE4F4FA4DD178F17EBA2BB5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouchBarVisualizerTests/Pods-TouchBarVisualizerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B48236DCB15A79087AF89DEC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TouchBarVisualizer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FE4B470425A0BCC8006B7A72 /* Sources */ = {
@@ -406,7 +305,6 @@
 /* Begin XCBuildConfiguration section */
 		FE4B471025A0BCC8006B7A72 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD7FEF18D8F16FBD03975BCE /* Pods-TouchBarVisualizerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -431,7 +329,6 @@
 		};
 		FE4B471125A0BCC8006B7A72 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5813AA6C5DE951F828CF4953 /* Pods-TouchBarVisualizerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -575,7 +472,6 @@
 		};
 		FED2D1D22260F99200D23B25 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BDEACCC35ACAE7092B1772F /* Pods-TouchBarVisualizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -614,7 +510,6 @@
 		};
 		FED2D1D32260F99200D23B25 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5DD71BE528F86FD99CB699F /* Pods-TouchBarVisualizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -681,6 +576,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE67E9E7268F3DC50005A3EB /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rnine/SimplyCoreAudio.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE67E9E8268F3DC50005A3EB /* SimplyCoreAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE67E9E7268F3DC50005A3EB /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */;
+			productName = SimplyCoreAudio;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FED2D1B92260F99100D23B25 /* Project object */;
 }
