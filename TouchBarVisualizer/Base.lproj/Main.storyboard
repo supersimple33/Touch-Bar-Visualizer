@@ -733,9 +733,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSE-14-Iu3">
-                                <rect key="frame" x="134" y="76" width="149" height="18"/>
+                                <rect key="frame" x="118" y="38" width="222" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Don't Use Blackhole" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9LF-B7-7sH">
+                                <buttonCell key="cell" type="check" title="Don't Use Blackhole (Advanced)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9LF-B7-7sH">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -743,8 +743,24 @@
                                     <action selector="soundSource:" target="XfG-lQ-9wD" id="XSc-ow-QYH"/>
                                 </connections>
                             </button>
+                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="Ya0-5Y-h14">
+                                <rect key="frame" x="115" y="72" width="42" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="modeSelector:" target="XfG-lQ-9wD" id="zi8-gG-pl9"/>
+                                </connections>
+                            </switch>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N6D-mE-8hd">
+                                <rect key="frame" x="163" y="77" width="131" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Line Mode" id="30c-4k-N2l">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <colorWell fixedFrame="YES" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M7-xd-2eD">
-                                <rect key="frame" x="306" y="73" width="44" height="23"/>
+                                <rect key="frame" x="300" y="73" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
@@ -756,6 +772,8 @@
                     <connections>
                         <outlet property="colorSelector" destination="6M7-xd-2eD" id="xcK-rd-BM0"/>
                         <outlet property="levelDisplay" destination="Sg8-3B-QeY" id="nvG-Fi-cTB"/>
+                        <outlet property="modeLabel" destination="N6D-mE-8hd" id="6H1-1i-2z8"/>
+                        <outlet property="modeSwitcher" destination="Ya0-5Y-h14" id="JN7-p2-KzX"/>
                         <outlet property="progressCircle" destination="Jxn-CM-qCL" id="nAu-3G-F1h"/>
                         <outlet property="progressCircle2" destination="zgu-Sm-Ui6" id="DAQ-1H-Aqe"/>
                     </connections>

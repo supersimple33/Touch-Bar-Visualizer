@@ -24,32 +24,35 @@ class LineScene: SKScene {
 	
 	var masterTransform = CGAffineTransform.identity
 	
+	// MARK: The Scene
+	
 	override func didMove(to view: SKView) { // Initialize all sprites for leveling
 		print(self.size.width)
 		self.backgroundColor = .black
 		
 		if !created {
 			NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(appChange(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
-			created = true
 			moveCent() //Correct call point?
-		}
-		
-		// Creating Vissualizer Line
-		let spriteLine = SKShapeNode(circleOfRadius: 1.0)
-		spriteLine.strokeColor = .red
-		spriteLine.fillColor = .black
-		spriteLine.name = "spriteLine"
-		spriteLine.zPosition = 2
-		addChild(spriteLine)
-		
-		// Creating Gradient
-		if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: NSColor(red: 255.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), width: self.size.width + 2, height: self.size.height * 2) {
-			let sampleback2 = SKShapeNode(path: CGPath(roundedRect: CGRect(x: -1, y: -1, width: self.size.width + 2, height: self.size.height * 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
-			sampleback2.fillColor = .white
-			sampleback2.fillTexture = SKTexture(cgImage: gradImage2)
-			sampleback2.position = CGPoint(x: 0, y: -5)
-			sampleback2.name = "gradientImage"
-			self.addChild(sampleback2)
+			
+			// Creating Gradient
+			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: NSColor(red: 255.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), width: self.size.width + 2, height: self.size.height * 2) {
+				let sampleback2 = SKShapeNode(path: CGPath(roundedRect: CGRect(x: -1, y: -1, width: self.size.width + 2, height: self.size.height * 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
+				sampleback2.fillColor = .white
+				sampleback2.fillTexture = SKTexture(cgImage: gradImage2)
+				sampleback2.position = CGPoint(x: 0, y: -5)
+				sampleback2.name = "gradientImage"
+				self.addChild(sampleback2)
+			}
+			
+			// Creating Vissualizer Line
+			let spriteLine = SKShapeNode(circleOfRadius: 1.0)
+			spriteLine.strokeColor = .red
+			spriteLine.fillColor = .black
+			spriteLine.name = "spriteLine"
+			spriteLine.zPosition = 2
+			addChild(spriteLine)
+			
+			created = true
 		}
 	}
 
@@ -57,9 +60,11 @@ class LineScene: SKScene {
 		if let child = childNode(withName: "gradientImage") as? SKShapeNode {
 			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: customColor, width: self.size.width + 2, height: self.size.height * 2) {
 				child.fillTexture = SKTexture(cgImage: gradImage2)
+				child.fillColor = .white
 			}
 			let spriteLine = childNode(withName: "spriteLine") as! SKShapeNode
 			spriteLine.strokeColor = customColor
+			print()
 		}
 	}
 	
@@ -120,6 +125,7 @@ class LineScene: SKScene {
 	
 	func moveCent() {
 		masterTransform = CGAffineTransform(translationX: -105.0, y: 0.0) // pulling values too much
+		masterTransform = .identity //temporary no shifting
 	}
 	
 	func moveAJ() {

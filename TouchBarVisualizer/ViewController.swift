@@ -41,6 +41,9 @@ class ViewController: NSViewController {
 	
 	@IBOutlet var levelDisplay: NSLevelIndicator!
 	
+	@IBOutlet var modeLabel: NSTextField!
+	@IBOutlet var modeSwitcher: NSSwitch!
+	
 	@IBAction func soundSource(_ sender: Any) {
 		useBlackHole = !useBlackHole
 		if useBlackHole {
@@ -62,10 +65,22 @@ class ViewController: NSViewController {
 			lastColorOperation!.cancel()
 		}
 		let workItem = DispatchWorkItem {
-			self.colorSKView.colScene.reCreateColor(customColor: color)
+			self.colorSKView.lineScene.reCreateColor(customColor: color) // should only be called when linescene is present so should be safe
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
 		lastColorOperation = workItem
+	}
+	
+	@IBAction func modeSelector(_ sender: Any) {
+		if (sender as! NSSwitch).state == .on {
+			self.colorSKView.presentLine()
+			self.colorSelector.isEnabled = true
+			self.modeLabel.stringValue = "Line Mode"
+		} else if (sender as! NSSwitch).state == .off {
+			self.colorSelector.isEnabled = false
+			self.colorSKView.presentBoxes()
+			self.modeLabel.stringValue = "Boxes Mode"
+		}
 	}
 	
 	// MARK: Loading/Unloading
@@ -138,8 +153,9 @@ class ViewController: NSViewController {
 		presentSystemModal(touchBar, systemTrayItemIdentifier: itemID)
 		updatePresence()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			self.colorSKView.presentColor()
+			self.colorSKView.presentLine()
 			self.colorSelector.isEnabled = true
+			self.modeSwitcher.isEnabled = true
 		}
 		//plug in show here
 	}
@@ -166,7 +182,11 @@ class ViewController: NSViewController {
 		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
 			let levels = self.vol.analyze(buffer: buffer)
 			
-			self.colorSKView.colScene.levelForAll(levels: levels.0.reversed())
+			if let scene = self.colorSKView.scene as? LineScene {
+				scene.levelForAll(levels: levels.0.reversed()) // Could refactor out reverse
+			} else if let scene = self.colorSKView.scene as? BoxesScene {
+				scene.levelForAll(levels: levels.0.reversed()) // Could refactor out reverse
+			}
 			
 			print(levels.1)
 			DispatchQueue.main.async {
