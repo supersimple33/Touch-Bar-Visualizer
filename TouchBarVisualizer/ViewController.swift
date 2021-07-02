@@ -90,38 +90,10 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Register for audio changes
+		// Register for audio changes // Unsure why it has to be this way but it does
 		// swiftlint:disable line_length
-		
-		var outputObserver = NotificationCenter.default.addObserver(forName: .defaultOutputDeviceChanged, object: nil, queue: .main) { [self] notification in
-		// Recreate the audio engine with the new mapping to maintain sourcing and optionally reconfigure aggregate device
-			let audioDevice = simplyCA.defaultOutputDevice!
-			
-			print("Default output device changed to \(audioDevice)")
-			if audioDevice.uid != "TBV Aggregate Device UID" && useBlackHole {
-				// Tear down previous init and rebuild audio device with new source
-				
-				stop()
-				createAudioDevice()
-				setup()
-			}
-			if !useBlackHole {
-				stop()
-				setup()
-			}
-		}
-		
-		var inputObserver = NotificationCenter.default.addObserver(forName: .defaultInputDeviceChanged, object: nil, queue: .main) { [self] notification in
-			let audioDevice = simplyCA.defaultInputDevice!
-			
-			print("Default input device changed to \(audioDevice)")
-			if !useBlackHole && audioDevice.uid != prevInp {
-				stop()
-				setup()
-			}
-			prevInp = audioDevice.uid // is this even necessary?
-		}
-		
+		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
+		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultInputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 		// swiftlint:enable line_length
 		
 		createAudioDevice()
