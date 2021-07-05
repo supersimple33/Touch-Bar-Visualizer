@@ -285,20 +285,26 @@ class ViewController: NSViewController {
 						}
 					}
 					
-					stop()
-					createAudioDevice()
+					if audioEngine.isRunning { // no need to destruct if not running (could run into dead zone)
+						stop()
+						createAudioDevice()
+					}
 				// If we switched to the agg device update the input by calling setup
 				} else if useBlackHole {
 					setup()
 				// If the output was switched and no black hole simply update the audio engine
 				} else {
-					stop()
-					setup()
+					if audioEngine.isRunning {
+						stop()
+						setup()
+					}
 				}
 			case kAudioHardwarePropertyDefaultInputDevice:
 				// If the system input changes reload the audio engine
-				stop()
-				setup()
+				if audioEngine.isRunning { // could also just use a sleep()
+					stop()
+					setup() //maybe this should be hidden too
+				}
 			default:
 				print("We didn't expect this!")
 			}
