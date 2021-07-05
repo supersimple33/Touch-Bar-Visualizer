@@ -88,7 +88,12 @@ public class Volume {
 			trailingPeak = peak
 		}
 		
-		let peakPercent = Int(roundf((peak / trailingPeak) * 10.0))
+		var interPercent = roundf((peak / trailingPeak) * 10.0)
+		if interPercent.isNaN || interPercent.isInfinite {
+			interPercent = 0.01
+		}
+		
+		let peakPercent = Int(interPercent)
 		
 		let method = 2 // Static for choosing scaling method logarithmic seems to be the best
 		var finalPeaks : [Int] = []
