@@ -220,9 +220,15 @@ class ViewController: NSViewController {
 		if let aggDev = AudioDevice.lookup(by: "TBV Aggregate Device UID") {
 			aggregateDeviceID = aggDev.id
 			if systemDefault.id == aggDev.id {
-				for devID in aggDev.ownedObjectIDs! { // unwrap because we should always own some devices
-					// Look for the underlying output attached to the Agg Device
-					let dev = AudioDevice.lookup(by: devID)!
+//				for devID in aggDev.ownedObjectIDs! { // unwrap because we should always own some devices
+//					// Look for the underlying output attached to the Agg Device
+//					let dev = AudioDevice.lookup(by: devID)!
+//					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(scope: .output) ?? 0 >= 1 {
+//						systemDefault = AudioDevice.lookup(by: dev.uid!)!
+//						break
+//					}
+//				}
+				for dev in aggDev.ownedAggregateDevices! {
 					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(scope: .output) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
 						break
@@ -278,8 +284,7 @@ class ViewController: NSViewController {
 				// Tear down previous init and rebuild audio device with new source
 				if device?.uid != "TBV Aggregate Device UID" && useBlackHole {
 					// check if the user is switching to the outer device and if so do not correct
-					for devID in AudioDevice.lookup(by: "TBV Aggregate Device UID")?.ownedObjectIDs ?? [] { // If no device is found don't run loop
-						let dev = AudioDevice.lookup(by: devID)!
+					for dev in AudioDevice.lookup(by: "TBV Aggregate Device UID")?.ownedAggregateDevices ?? [] {
 						if dev.uid == device?.uid {
 							return
 						}
