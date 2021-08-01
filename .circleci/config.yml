@@ -18,7 +18,6 @@ jobs:
       - run: sudo bundle update --bundler
       - run: brew install swiftlint
       - run: bundle install
-      - run: pod install # Install CocoaPods dependencies
       - mac-permissions/add-permission:
           bundle-id: "com.addisonhanrattie.TouchBarVisualizer"
           permission-type: "kTCCServiceMicrophone"
