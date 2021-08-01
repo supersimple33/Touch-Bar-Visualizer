@@ -35,10 +35,11 @@ class LineScene: SKScene {
 			moveCent() //Correct call point?
 			
 			// Creating Gradient
-			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: NSColor(red: 255.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), width: self.size.width + 2, height: self.size.height * 2) {
+			let red = NSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+			if let gImg = g2colorIMG(c1: NSColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), c2: red, width: self.size.width + 2, height: self.size.height * 2) {
 				let sampleback2 = SKShapeNode(path: CGPath(roundedRect: CGRect(x: -1, y: -1, width: self.size.width + 2, height: self.size.height * 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
 				sampleback2.fillColor = .white
-				sampleback2.fillTexture = SKTexture(cgImage: gradImage2)
+				sampleback2.fillTexture = SKTexture(cgImage: gImg)
 				sampleback2.position = CGPoint(x: 0, y: -5)
 				sampleback2.name = "gradientImage"
 				self.addChild(sampleback2)
@@ -58,13 +59,19 @@ class LineScene: SKScene {
 
 	func reCreateColor(customColor: NSColor) {
 		if let child = childNode(withName: "gradientImage") as? SKShapeNode {
-			if let gradImage2 = gradient2colorIMG(c1: NSColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0), c2: customColor, width: self.size.width + 2, height: self.size.height * 2) {
-				child.fillTexture = SKTexture(cgImage: gradImage2)
+			if let gImg = g2colorIMG(c1: NSColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), c2: customColor, width: self.size.width + 2, height: self.size.height * 2) {
+				child.fillTexture = SKTexture(cgImage: gImg)
 				child.fillColor = .white
+			} else {
+				print("color creation error")
 			}
-			let spriteLine = childNode(withName: "spriteLine") as! SKShapeNode
-			spriteLine.strokeColor = customColor
-			print()
+			
+			if let spriteLine = childNode(withName: "spriteLine") as? SKShapeNode {
+				spriteLine.strokeColor = customColor
+				print()
+			} else {
+				print("discovery error")
+			}
 		}
 	}
 	
@@ -133,7 +140,7 @@ class LineScene: SKScene {
 	}
 	
 	// REFRENCE: stackoverflow.com/questions/63866624/why-is-cilineargradient-resulting-in-a-very-non-linear-gradient
-	func gradient2colorIMG(c1: NSColor, c2: NSColor, width: CGFloat, height: CGFloat) -> CGImage? {
+	func g2colorIMG(c1: NSColor, c2: NSColor, width: CGFloat, height: CGFloat) -> CGImage? {
 		if let gradientFilter = CIFilter(name: "CILinearGradient") {
 			let startVector:CIVector = CIVector(x: 0, y: 0 + 1)
 			let endVector:CIVector = CIVector(x: 0, y: height - 1)

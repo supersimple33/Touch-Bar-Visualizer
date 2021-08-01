@@ -59,26 +59,24 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	@IBAction func colorSelected(_ sender: Any) {
-		let color = (sender as! NSColorWell).color
-		
+	@IBAction func colorSelected(_ sender: NSColorWell) {
 		// To prevent lag keep resetting what color the visualizer should be updated to
 		if lastColorOperation != nil {
 			lastColorOperation!.cancel()
 		}
 		let workItem = DispatchWorkItem {
-			self.colorSKView.lineScene.reCreateColor(customColor: color) // should only be called when linescene is present so should be safe
+			self.colorSKView.lineScene.reCreateColor(customColor: sender.color) // should only be called when linescene is present so should be safe
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
 		lastColorOperation = workItem
 	}
 	
-	@IBAction func modeSelector(_ sender: Any) {
-		if (sender as! NSSwitch).state == .on {
+	@IBAction func modeSelector(_ sender: NSSwitch) {
+		if sender.state == .on {
 			self.colorSKView.presentLine()
 			self.colorSelector.isEnabled = true
 			self.modeLabel.stringValue = "Line Mode"
-		} else if (sender as! NSSwitch).state == .off {
+		} else if sender.state == .off {
 			self.colorSelector.isEnabled = false
 			self.colorSKView.presentBoxes()
 			self.modeLabel.stringValue = "Boxes Mode"
