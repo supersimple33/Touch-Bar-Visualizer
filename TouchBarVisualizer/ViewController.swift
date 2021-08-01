@@ -12,9 +12,11 @@ import Accelerate
 import AudioToolbox
 import SpriteKit
 import CoreAudio
-import AMCoreAudio
+import SimplyCoreAudio
 
 class ViewController: NSViewController {
+	
+	var simplyCA = SimplyCoreAudio()
 
 	var audioEngine = AVAudioEngine()
 	let itemID = NSTouchBarItem.Identifier(rawValue: "com.addisonhanrattie.visualizer.color")
@@ -30,12 +32,19 @@ class ViewController: NSViewController {
 	var prevInp: String?
 	var aggregateDeviceID: AudioDeviceID?
 	
+	var lastColorOperation : DispatchWorkItem?
+	
 	// MARK: UI
+	
+	@IBOutlet var colorSelector: NSColorWell!
 	
 	@IBOutlet var progressCircle: NSProgressIndicator!
 	@IBOutlet var progressCircle2: NSProgressIndicator!
 	
 	@IBOutlet var levelDisplay: NSLevelIndicator!
+	
+	@IBOutlet var modeLabel: NSTextField!
+	@IBOutlet var modeSwitcher: NSSwitch!
 	
 	@IBAction func soundSource(_ sender: Any) {
 		useBlackHole = !useBlackHole
@@ -50,12 +59,36 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	@IBAction func colorSelected(_ sender: NSColorWell) {
+		// To prevent lag keep resetting what color the visualizer should be updated to
+		if lastColorOperation != nil {
+			lastColorOperation!.cancel()
+		}
+		let workItem = DispatchWorkItem {
+			self.colorSKView.lineScene.reCreateColor(customColor: sender.color) // should only be called when linescene is present so should be safe
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
+		lastColorOperation = workItem
+	}
+	
+	@IBAction func modeSelector(_ sender: NSSwitch) {
+		if sender.state == .on {
+			self.colorSKView.presentLine()
+			self.colorSelector.isEnabled = true
+			self.modeLabel.stringValue = "Line Mode"
+		} else if sender.state == .off {
+			self.colorSelector.isEnabled = false
+			self.colorSKView.presentBoxes()
+			self.modeLabel.stringValue = "Boxes Mode"
+		}
+	}
+	
 	// MARK: Loading/Unloading
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Register for audio changes
+		// Register for audio changes // Unsure why it has to be this way but it does
 		// swiftlint:disable line_length
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultOutputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
 		addListenerBlock(listenerBlock: audioObjectPropertyListenerBlock, onAudioObjectID: AudioObjectID(kAudioObjectSystemObject), forPropertyAddress: AudioObjectPropertyAddress( mSelector: kAudioHardwarePropertyDefaultInputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster))
@@ -75,7 +108,17 @@ class ViewController: NSViewController {
 	}
 	
 	override func viewDidAppear() {
+		super.viewDidAppear()
+		
 		backGroundShow()
+	}
+	
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		
+		// Tear down color well before leaving
+		NSColorPanel.shared.orderOut(nil)
+		colorSelector.deactivate()
 	}
 	
 	// swiftlint:disable line_length
@@ -110,7 +153,9 @@ class ViewController: NSViewController {
 		presentSystemModal(touchBar, systemTrayItemIdentifier: itemID)
 		updatePresence()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			self.colorSKView.presentColor()
+			self.colorSKView.presentLine()
+			self.colorSelector.isEnabled = true
+			self.modeSwitcher.isEnabled = true
 		}
 		//plug in show here
 	}
@@ -136,10 +181,13 @@ class ViewController: NSViewController {
 		// Install Tap and Start Audio Processing // Try Larger Buffer Size to test affects
 		audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
 			let levels = self.vol.analyze(buffer: buffer)
-			for i in 0...99 {
-				// Displaying
-				self.colorSKView.colScene.levelFor(group: 99 - i, level: levels.0[i])
-			} // Removed throttling code may impact performance
+			
+			if let scene = self.colorSKView.scene as? LineScene {
+				scene.levelForAll(levels: levels.0.reversed()) // Could refactor out reverse
+			} else if let scene = self.colorSKView.scene as? BoxesScene {
+				scene.levelForAll(levels: levels.0.reversed()) // Could refactor out reverse
+			}
+			
 			print(levels.1)
 			DispatchQueue.main.async {
 				self.levelDisplay.doubleValue = Double(levels.1)
@@ -159,7 +207,7 @@ class ViewController: NSViewController {
 
 	func createAudioDevice() {
 		// Find all audio devices and verify their existence
-		guard var systemDefault = AudioDevice.defaultOutputDevice() else {
+		guard var systemDefault = simplyCA.defaultOutputDevice else {
 			fatalError("There was no default system audio device detected, this is weird")
 		}
 		guard let blackHole = AudioDevice.lookup(by: "BlackHole2ch_UID") else {
@@ -170,12 +218,17 @@ class ViewController: NSViewController {
 		if let aggDev = AudioDevice.lookup(by: "TBV Aggregate Device UID") {
 			aggregateDeviceID = aggDev.id
 			if systemDefault.id == aggDev.id {
-				for devID in aggDev.ownedObjectIDs()! {
-					// Look for the underlying output attached to the Agg Device
-					let dev = AudioDevice.lookup(by: devID)!
-					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(direction: .playback) ?? 0 >= 1 {
+//				for devID in aggDev.ownedObjectIDs! { // unwrap because we should always own some devices
+//					// Look for the underlying output attached to the Agg Device
+//					let dev = AudioDevice.lookup(by: devID)!
+//					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(scope: .output) ?? 0 >= 1 {
+//						systemDefault = AudioDevice.lookup(by: dev.uid!)!
+//						break
+//					}
+//				}
+				for dev in aggDev.ownedAggregateDevices! {
+					if dev.uid != "BlackHole2ch_UID" && dev.layoutChannels(scope: .output) ?? 0 >= 1 {
 						systemDefault = AudioDevice.lookup(by: dev.uid!)!
-//						systemDefault.setAsDefaultOutputDevice() // Set to output to stop phantom audio drivers?
 						break
 					}
 				}
@@ -183,13 +236,20 @@ class ViewController: NSViewController {
 			print(deleteMultiOutputAudioDevice())
 		}
 		
-		// Set BlackHole Volume to Max
-		blackHole.setVolume(1.0, channel: 0, direction: .recording)
-		blackHole.setVolume(1.0, channel: 1, direction: .recording)
-		blackHole.setVolume(1.0, channel: 2, direction: .recording)
-		blackHole.setVolume(1.0, channel: 0, direction: .playback)
-		blackHole.setVolume(1.0, channel: 1, direction: .playback)
-		blackHole.setVolume(1.0, channel: 2, direction: .playback)
+		// Set BlackHole Volume to Max and remove mute
+		blackHole.setVolume(1.0, channel: 0, scope: .input)
+		blackHole.setVolume(1.0, channel: 1, scope: .input)
+		blackHole.setVolume(1.0, channel: 2, scope: .input)
+		blackHole.setVolume(1.0, channel: 0, scope: .output)
+		blackHole.setVolume(1.0, channel: 1, scope: .output)
+		blackHole.setVolume(1.0, channel: 2, scope: .output)
+		
+		blackHole.setMute(false, channel: 0, scope: .input)
+		blackHole.setMute(false, channel: 1, scope: .input)
+		blackHole.setMute(false, channel: 2, scope: .input)
+		blackHole.setMute(false, channel: 0, scope: .output)
+		blackHole.setMute(false, channel: 1, scope: .output)
+		blackHole.setMute(false, channel: 2, scope: .output)
 		
 		// Make sure we are all working at the same sample rate
 		blackHole.setNominalSampleRate(48000)
@@ -201,8 +261,8 @@ class ViewController: NSViewController {
 		
 		// Set As Default
 		aggregateDeviceID = ret.1
-		AudioDevice.lookup(by: ret.1)?.setAsDefaultOutputDevice()
-		blackHole.setAsDefaultInputDevice()
+		AudioDevice.lookup(by: ret.1)?.isDefaultOutputDevice = true
+		blackHole.isDefaultInputDevice = true
 	}
 	
 	func stop(){ // End tapping of audio engine
@@ -216,33 +276,38 @@ class ViewController: NSViewController {
 			let address: AudioObjectPropertyAddress = addresses[Int(index)]
 			switch address.mSelector {
 			case kAudioHardwarePropertyDefaultOutputDevice:
-				let device = AudioDevice.defaultOutputDevice()
+				let device = simplyCA.defaultOutputDevice
 				print("kAudioHardwarePropertyDefaultOutputDevice: \(device)")
 				
 				// Tear down previous init and rebuild audio device with new source
 				if device?.uid != "TBV Aggregate Device UID" && useBlackHole {
 					// check if the user is switching to the outer device and if so do not correct
-					for devID in AudioDevice.lookup(by: "TBV Aggregate Device UID")?.ownedObjectIDs() ?? [] { // If no device is found don't run loop
-						let dev = AudioDevice.lookup(by: devID)!
+					for dev in AudioDevice.lookup(by: "TBV Aggregate Device UID")?.ownedAggregateDevices ?? [] {
 						if dev.uid == device?.uid {
 							return
 						}
 					}
 					
-					stop()
-					createAudioDevice()
+					if audioEngine.isRunning { // no need to destruct if not running (could run into dead zone)
+						stop()
+						createAudioDevice()
+					}
 				// If we switched to the agg device update the input by calling setup
 				} else if useBlackHole {
 					setup()
 				// If the output was switched and no black hole simply update the audio engine
 				} else {
-					stop()
-					setup()
+					if audioEngine.isRunning {
+						stop()
+						setup()
+					}
 				}
 			case kAudioHardwarePropertyDefaultInputDevice:
 				// If the system input changes reload the audio engine
-				stop()
-				setup()
+				if audioEngine.isRunning { // could also just use a sleep()
+					stop()
+					setup() //maybe this should be hidden too
+				}
 			default:
 				print("We didn't expect this!")
 			}
@@ -316,41 +381,5 @@ extension ViewController: NSTouchBarDelegate {
 
 	func minimizeSystemModal(_ touchBar: NSTouchBar!) {
 		NSTouchBar.minimizeSystemModalTouchBar(touchBar)
-	}
-}
-
-// MARK: CoreAudio Notification Responder
-extension ViewController: EventSubscriber { // bug in AMCoreAudio or something so code here is dead
-	func eventReceiver(_ event: Event) {
-		switch event {
-		case let event as AudioHardwareEvent:
-			switch event {
-			case let .defaultOutputDeviceChanged(audioDevice):
-			// Recreate the audio engine with the new mapping to maintain sourcing and optionally reconfigure aggregate device
-				print("Default output device changed to \(audioDevice)")
-				if audioDevice.uid != "TBV Aggregate Device UID" && useBlackHole {
-					// Tear down previous init and rebuild audio device with new source
-					
-					stop()
-					createAudioDevice()
-					setup()
-				}
-				if !useBlackHole {
-					stop()
-					setup()
-				}
-			case let .defaultInputDeviceChanged(audioDevice: audioDevice):
-				print("Default input device changed to \(audioDevice)")
-				if !useBlackHole && audioDevice.uid != prevInp {
-					stop()
-					setup()
-				}
-				prevInp = audioDevice.uid // is this even necessary?
-			default:
-				break
-			}
-		default:
-			break
-		}
 	}
 }

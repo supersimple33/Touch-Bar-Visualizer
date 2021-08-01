@@ -28,7 +28,7 @@ public class Volume {
 		
 		let maxBufFloatL = Int(bufferSize / 2) * MemoryLayout<Float>.size
 		
-		// Set Comnplex
+		// Set Complex
 		var realp = (malloc(maxBufFloatL)?.assumingMemoryBound(to: Float.self))!
 		var imagp = (malloc(maxBufFloatL)?.assumingMemoryBound(to: Float.self))!
 		var complex = DSPSplitComplex(realp: realp, imagp: imagp)
@@ -88,7 +88,12 @@ public class Volume {
 			trailingPeak = peak
 		}
 		
-		let peakPercent = Int(roundf((peak / trailingPeak) * 10.0))
+		var interPercent = roundf((peak / trailingPeak) * 10.0)
+		if interPercent.isNaN || interPercent.isInfinite {
+			interPercent = 0.01
+		}
+		
+		let peakPercent = Int(interPercent)
 		
 		let method = 2 // Static for choosing scaling method logarithmic seems to be the best
 		var finalPeaks : [Int] = []
