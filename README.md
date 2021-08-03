@@ -24,6 +24,9 @@ The app will continue to run in the background and can be found on the control s
 ## ToDo
 - ~~Add a different view for the Vissualizer (this is probably next and if you have any ideas create a PR or leave a comment.~~
 - ~~Create a new menu for selecting different audio inputs other than soundflower.~~
+- Allow volume to be changed
+- Better teardown and buildup of app for better experience
+- Better battery performance
 ## Community
 - If you find a bug or would like to request a feature/leave feedback please open an issue
 - Feel free to contribute any help is welcome!!!
